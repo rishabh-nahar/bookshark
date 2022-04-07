@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope:wght@400;600&display=swap');;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+:root{
+
+    --black: #0f0f0f;
+    --white: #ffffff;
+    
+    --theme-light-1: #f2f3f5;
+    --theme-light-2: #95adbe;
+    --theme-light-3: #fcf6db;
+    
+    --theme-dark-1: #4d4d4d;
+    --theme-dark-2: #69370d;
+    --theme-dark-3: #6d5644;
+    
+    --font-1:lora;
+    --font-2:Manrope;
+    }
+.hidden {
+	display: none !important;
+}
+.text-center{
+    text-align: center;
+}
+
+
+.show-on-desktop{
+    display:block;
+}
+.hide-on-desktop{
+    display:none;
+}
+
+@media screen and (max-width: 768px) { 
+    .hide-on-mobile{
+        display:none
+    }
+    .show-on-mobile{
+        display:block
+    }
+}
+
+.imp-field{
+    color: red;
+}
+
+
+
+/* ========== Button styles =========== */
+.simple-bttn{
+    background-color:#ffd45e;
+    border:transparent;
+    font-size: 25px;
+    padding:10px 15px;
+    border-radius:2px;
+    color:white;
+}
+
+.simple-bttn-2 {
+    border: none;
+    border-radius: 2px;
+    outline: 0;
+    display: inline-block;
+    padding: 8px 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.simple-bttn-2:hover {
+    background-color: #555;
+}
+.simple-bttn-circle{
+    border-radius: 50%;
+    font-size: 30px;
+    border: transparent;
+    background:#95adbe;
+    color: white;
+}

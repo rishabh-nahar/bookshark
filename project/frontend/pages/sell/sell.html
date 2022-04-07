@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include "components/navbar.html"%}
+    <br><br>
+    <br><br><br><br><br><br>
+    <div class="book-sell-form-container">
+        <div class="book-sell-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Book Name" name="book_name">
+                <input type="text" placeholder="Book Author" name="book_author">
+                <input type="text" placeholder="Book publisher" name="book_publisher">
+                <input type="number" id="year_input" min="2000" step="1" name="book_year_edition" />
+                <input type="text" placeholder="selling price" name="book_selling_price">
+                <input type="textarea" placeholder="book-description" name="book_description">
+                <input type="submit" value="list Book"/>
+            </form>
+        </div>
+    </div>
+    <script>
+        const d = new Date();
+        let year = d.getFullYear();
+        document.getElementById('year_input').max = year
+        document.getElementById('year_input').min = year - 10;
+    </script>
+</body>
+</html>

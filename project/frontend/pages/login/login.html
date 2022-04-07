@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="general.css">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/commonforall.css' %}?" %}>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        outline: none
+    }
+    .login-head{
+        padding:0 0 4vh 0;
+        font-family: var(--font-2);
+    }
+    .login-form-container{
+        height:100vh;
+        width:100vw;
+        background:var(--theme-light-2);
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .login-form{
+        background:var(--white);
+        padding:5vh 3vw;
+        border-radius: 2px;
+    }
+    .input-field{
+        position: relative;
+        padding:0 0 3vh 0 ;
+    }
+
+    .input-field input{
+        width:30vw;
+        border: transparent;
+        border-bottom: solid 1px;
+        background-color:transparent;
+        height:3vh;
+        z-index: 5;
+    }
+    .input-field .input-field-label{
+        position:absolute;
+        white-space: nowrap;
+        left: 0vw;
+        top: 0;
+        transition: 0.3s;
+        cursor:text;
+        z-index: 0;
+        color:var(--theme-dark-1);
+    }
+    .input-field .input-field-focused{
+        top: -2vh;
+        font-size: 12px;
+    }
+    .forget-password-div{
+        padding:1vh 0 0 0;
+    }
+    .forget-password-div a{
+        text-decoration:none;
+    }
+</style>
+
+</head>
+<body>
+{% include "components/navbar.html" %}
+    <div class="login-form-container">
+    <div class="login-form">
+        <div class="text-center login-head" id="login">Login Here</div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="text" autocomplete="off" name="username" onfocusout="input_field_focusout('username_label','username_input')" onfocus="input_field_focus('username_label')" id="username_input" required />
+                    <label for="name" class="input-field-label" id="username_label">Username:<span class="imp-field">*</span></label>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" name="password" onfocusout="input_field_focusout('password_label','password_input')" onfocus="input_field_focus('password_label')" id="password_input" required />
+                    <label for="name" class="input-field-label" id="password_label">Password:<span class="imp-field">*</span></label>
+                </div>
+                <div class="">
+                    <input class="simple-bttn-2" type="submit" name="submit"/>
+                </div>
+            </div>
+        </form>
+        <div class="forget-password-div">
+            <a href="">Forget Password?</a>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+function input_field_focus(n){
+    document.getElementById(n).classList.add("input-field-focused")
+}
+function input_field_focusout(n,m){
+    var inp_value = document.getElementById(m).value;
+    if(inp_value == ""){
+        document.getElementById(n).classList.remove("input-field-focused")
+    }
+}
+
+</script>
+</html>
