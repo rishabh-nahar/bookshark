@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/listbook.css' %}?" %}>
+</head>
+<body>
+    {% include "components/navbar.html"%}
+    <div class="list-book-form-wrapper">
+        <div class="list-book-form-div ">
+            <h2 class="text-center">List Your Book here </h2><br>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="list-book-inside-form-div">
+                    <div class="input-field">
+                        <label for="">Book Name:</label>
+                        <input type="text" value="Book Name" name="book_name">
+                    </div>
+        
+                    <div class="input-field">
+                        <label for="category">Book Category</label>
+                        <select name="book_category" id="">
+                            <option value="Educational">Educational</option>
+                            <option value="Action and Adventure">Action and Adventure</option>
+                            <option value="Classics">Classics</option>
+                            <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
+                            <option value="Detective and Mystery">Detective and Mystery</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Historical Fiction">Historical Fiction</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Literary Fiction">Literary Fiction</option>
+                            <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
+                            <option value="Short Stories">Short Stories</option>
+                            <option value="Suspense and Thrillers">Suspense and Thrillers</option>
+                            <option value="Women's Fiction">Women's Fiction</option>
+                            <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
+                            <option value="Cookbooks">Cookbooks</option>
+                            <option value="Essays">Essays</option>
+                            <option value="History">History</option>
+                            <option value="Memoir">Memoir</option>
+                            <option value="Self-Help">Self-Help</option>
+                            <option value="True Crime">True Crime</option>
+                        </select>
+                    </div>
+            
+                    <div class="input-field">
+                        <label for="">Book Author:</label>
+                        <input type="text" value="Book Name" name="book_author">
+                    </div>
+                    <div class="input-field">
+                        <label for="">Book Publisher:</label>
+                        <input type="text" value="Book Name" name="book_publisher">
+                    </div>
+                    <div class="input-field">
+                        <label for="">Year Edition:</label>
+                        <input type="Number" value="2020" id="year_input" name="book_year_edition">
+                    </div>
+                    <div class="input-field">
+                        <label for="">Book MRP:</label>
+                        <input type="Number" value="2020" name="book_mrp">
+                    </div>
+                    <div class="input-field">
+                        <label for="">Your Selling Price:</label>
+                        <input type="Number" value="2020" name="book_selling_price">
+                    </div>
+                    <div class="input-field">
+                        <label for="">Book Description:</label>
+                        <textarea name="book_description" id="book_description">hello</textarea>
+                    </div>
+
+                    <div class="input-field ">
+                        <div><input type="file" accept="image/*" name="image_file" id="file"  onchange="loadFile(event)" multiple></div>
+                        <div><img id="output" width="200" /></div>
+                    </div>
+
+
+                    <br>
+
+                    <button class="submit-bttn-2" type="submit">
+                        List Book
+                    </button>
+
+                </div>
+                    
+            </form>
+
+           
+            <script>
+                var loadFile = function(event) {
+                    var image = document.getElementById('output');
+                    image.src = URL.createObjectURL(event.target.files[1]);
+                };
+                const d = new Date();
+                let year = d.getFullYear();
+                document.getElementById('year_input').max = year
+                document.getElementById('year_input').min = year - 10;
+            </script>
+
+        </div>
+    </div>
+</body>
+</html>

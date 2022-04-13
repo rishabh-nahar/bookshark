@@ -1,0 +1,18 @@
+body{
+    background-color: var(--theme-light-3);
+}
+.list-book-form-wrapper{
+    padding: 60px 2vw;
+    /* to display in center */
+    display: grid;
+    column-gap: 5vw;
+    justify-content: center;
+}
+.list-book-form-div{
+    background-color: white;
+    padding: 5vh 5vw;
+    border-radius:5px;
+}
+.list-book-inside-form-div .input-field{
+    padding: 5px  0;
+}

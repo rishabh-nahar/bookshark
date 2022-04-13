@@ -20,16 +20,22 @@
     --theme-dark-2: #69370d;
     --theme-dark-3: #6d5644;
     
+
+    --color-1:rgb(191, 97, 57);
+    --color-2:rgb(110, 191, 226);
+
     --font-1:lora;
-    --font-2:Manrope;
-    }
+    --font-2:Manrope;}
 .hidden {
 	display: none !important;
 }
 .text-center{
     text-align: center;
 }
-
+.grid-2{
+    display: grid;
+    grid-template-columns:  auto auto;
+}
 
 .show-on-desktop{
     display:block;
@@ -54,6 +60,10 @@
 
 
 /* ========== Button styles =========== */
+button {
+    border: none;
+    background: transparent;
+}
 .simple-bttn{
     background-color:#ffd45e;
     border:transparent;
@@ -62,6 +72,8 @@
     border-radius:2px;
     color:white;
 }
+
+
 
 .simple-bttn-2 {
     border: none;
@@ -79,10 +91,31 @@
 .simple-bttn-2:hover {
     background-color: #555;
 }
+.simple-bttn-3{
+    background:var(--theme-dark-3);
+    border-radius:2px;
+    color: var(--white);
+    padding: 1vh 1vw;
+}
+.simple-bttn-4{
+    background:var(--color-1);
+    border-radius:2px;
+}
+
 .simple-bttn-circle{
     border-radius: 50%;
     font-size: 30px;
     border: transparent;
     background:#95adbe;
     color: white;
+}
+
+
+/* ========== Input styles =========== */
+input{
+    outline:none
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }

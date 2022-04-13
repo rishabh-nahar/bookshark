@@ -86,11 +86,19 @@ class file_upload(models.Model):
 
 class listing_books(models.Model):
     book_name = models.CharField(max_length=70,null=False,default=None)
+    book_category = models.CharField(max_length=40,null=False,default=None)
     book_author = models.CharField(max_length=70,null=False,default=None)
     book_publisher = models.CharField(max_length=70,null=False,default=None)
     book_year_edition = models.IntegerField(null=True,default=None)
-    book_selling_price = models.CharField(max_length=70,null=False,default=None)
+    book_selling_price = models.IntegerField(null=False,default=None)
+    book_mrp = models.IntegerField(null=False,default=None)
     book_description = models.CharField(max_length=1000,null=False,default=None)
     book_seller = models.ForeignKey(user_details,on_delete=models.CASCADE,default=None,verbose_name='book_seller_id')
     class Meta:
         db_table = "book_details"
+
+class book_images(models.Model):
+    path = models.URLField(null=False,blank=None)
+    book_uid = models.ForeignKey(listing_books,on_delete=models.CASCADE,default=None,verbose_name='book_id')
+    class Meta:
+        db_table = "book_images"

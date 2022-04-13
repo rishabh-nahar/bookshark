@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from  django.contrib import messages    
-from backend.models import user_details, listing_books
+from backend.models import book_images, user_details, listing_books
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
+from django.core.files.storage import FileSystemStorage
 import random
 
 def home(request):
@@ -12,24 +13,40 @@ def home(request):
 def sell(request):
     if request.method == 'POST':
         book_name = request.POST['book_name']
+        book_category = request.POST['book_category']
         book_author = request.POST['book_author']
         book_publisher = request.POST['book_publisher']
         book_year_edition = request.POST['book_year_edition']
+        book_mrp  = request.POST['book_mrp']
         book_selling_price = request.POST['book_selling_price']
         book_description = request.POST['book_description']
+
+        file = request.FILES['image_file']
 
         list_book_details = listing_books.objects.create(
             book_name=book_name, 
             book_author=book_author,
+            book_category=book_category,
             book_publisher=book_publisher,
             book_year_edition=book_year_edition,
             book_selling_price = book_selling_price,
             book_description = book_description,
+            book_mrp = book_mrp,
             book_seller_id = user_details.objects.get(username = request.session.get("username")).unique_id
             )
         list_book_details.save()
 
-    return render(request,'pages/sell/sell.html')
+
+        # file_type = request.POST['image_type']
+        fs = FileSystemStorage(location= 'books/'+str(list_book_details.pk)+"/")
+        file_details = book_images.objects.create(
+            path = str(list_book_details.pk)+"/"+file.name,
+            book_uid = listing_books.objects.get(pk = list_book_details.pk)
+            )
+        file_details.save()
+        fs.save(file.name,file)
+
+    return render(request,'pages/sell/listbook.html')
 
 def loginpage(request):
     if request.method == "POST":
