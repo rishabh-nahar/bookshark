@@ -61,22 +61,22 @@
             </div>
             <div class=" disp-flex nav-col-3 user-credentials">
                 <a href="" ><i class="fa fa-user"></i></a>
-                <a href="">Login</a>
-                <a href="">Signup</a>
+                <a href="/loginpage">Login</a>
+                <a href="/registeration_page">Signup</a>
             </div>
         </div>
     </nav>
     <div class="hidden-nav-container hide-nav-container" id="hidden_nav">
         <div class="hidden-nav" id="link_container_wrapper">
             <div class="link-container" id="link_container">
-                <a href="" class="nav-links"><div class="nav-link-div">Home</div></a>
-                <a href="" class="nav-links"><div class="nav-link-div">Sell Books</div></a>
+                <a href="/" class="nav-links"><div class="nav-link-div">Home</div></a>
+                <a href="/sell" class="nav-links"><div class="nav-link-div">Sell Books</div></a>
                 <a href="" class="nav-links"><div class="nav-link-div">Profile</div></a>
                 <a href="" class="nav-links"><div class="nav-link-div">About Us</div></a>
                 <a href="" class="nav-links"><div class="nav-link-div">Contact Us</div></a>
                 <a href="" class="nav-links"><div class="nav-link-div">Help</div></a>
-                <a href="" class="nav-links"><div class="nav-link-div">Login</div></a>
-                <a href="" class="nav-links"><div class="nav-link-div">SignUp</div></a>
+                <a href="/loginpage" class="nav-links"><div class="nav-link-div">Login</div></a>
+                <a href="/registeration_page" class="nav-links"><div class="nav-link-div">SignUp</div></a>
             </div>
         </div>
         <script>
@@ -90,5 +90,9 @@
             }
         </script>
     </div>
+
+    {% block content %}
+    {% endblock %}
+
 </body>
 </html>

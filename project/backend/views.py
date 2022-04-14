@@ -10,6 +10,9 @@ import random
 def home(request):
     return render(request,'pages/home/index.html')
 
+def navbar(request):
+    return render(request,'components/nav.html')
+
 def sell(request):
     if request.method == 'POST':
         book_name = request.POST['book_name']

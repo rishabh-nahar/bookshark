@@ -2,7 +2,7 @@ body{
     background-color: var(--theme-light-3);
 }
 .list-book-form-wrapper{
-    padding: 60px 2vw;
+    padding: var(--body-start-position) 2vw;
     /* to display in center */
     display: grid;
     column-gap: 5vw;

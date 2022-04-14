@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,156 +7,52 @@
     <title>Document</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/index.css' %}?" %}>
 </head>
 
 <style>
-    *{
-        margin:0;
-        box-sizing: border-box;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;    }
-    :root{
-        --search-box-height: 50px
-    }
-    .home-body-container{
-        height: auto;
-        width: auto;
-        padding: 70px 0 0 0 ;
-    }
 
-    .search-results{
-        display: grid;
-        width:100%;
-        gap: 3vw;
-        grid-template-columns: 22% 22% 22% 22%;
-        justify-content: center;
-    }
-    .result-card{
-        position: relative;
-        border-radius:5px;
-        border:0.1px solid var(--theme-light-1)
-    }
-    .result-card-anchor{
-        text-decoration: none;
-        display: grid;
-        color:var(--black);
-        padding:1vh 1vw;;
-        justify-content: center;
-    }
-    .result-card-anchor div{
-        width:100%;
-    }
-    .result-card .book-image-div{
-        display: grid;
-        justify-content: center;
-    }
-    .result-card .book-image{
-        width: 10vw;
-        height:30vh;
-        object-fit: contain;
-        justify-self: center;
-    }
-    .result-card .book-name{
-        justify-self: center;
-        text-align: center;
-        font-size: 20px;
-        padding:1vh 0;
-    }
-    .result-card .book-price{
-        font-size: 20px;
-        font-weight: bold;
-        padding: 1vh 0 0 0 ;
-    }
-    .book-result-card-button-container{
-        display:flex;
-        justify-content: space-around;
-        width:100%;
-        padding:1vh 0vw;
-    }
-    .add-to-cart-button , .buy-now-button{
-        padding:1vh 1vw;
-        width:10vw;
-        color: var(--white);
-        white-space: nowrap;
-    }
-    @media only screen and (max-width:768px){
-
-        .result-card{
-            height:100%;
-        }
-        .result-card-anchor{
-            grid-template-columns: 35% auto;
-            justify-content: center;
-            gap:2vw;
-            white-space: normal;
-        }
-
-        .book-image-div{
-            padding: 0 1vw;
-        }
-        .book-details-div{
-            display: grid;
-            height:100%;
-        }
-        .result-card .book-image{
-            height:40vw;
-        }
-        .add-to-cart-button , .buy-now-button{
-            width:42vw;    
-        }
-        .result-card .book-image{
-            object-fit:contain;
-            width:100%;
-        }  
-        .result-card .book-name{
-            text-align: left;
-        }
-        .result-card .book-price{
-            display: grid;
-            align-items: center;
-        }
-    }
 
 </style>    
 
 <body>
-{% include 'components/nav.html' %}
-<div class="home-body-container">
-    <div class="search-box-wrapper">
-         
-        </div>
-        <br>
-        <div class="search-results">
-    
-            <div class="result-card">
-                <a href="#" class="result-card-anchor">
-                    <div class="book-image-div">
-                        <img class="book-image" src="{% static 'media/images/Home/book.avif' %}" alt="{Book-name}" />
-                    </div>
-                    <div class="book-details-div">
-                        <div class="book-name"><b>The Dreaming Arts</b></div>
-                        <div class="book-description">Fingerprint! Publishing (1 February 2021); Prakash Books India Pvt. Ltd.</div>
-                        <div class="book-price"><b>&#8377;90 </b></div>
-                    </div>
-                </a>
-                <div class="book-result-card-button-container">
-                    <div>
-                        <button class="add-to-cart-button simple-bttn-3"> <i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                    </div>
-                    <div>
-                        <button class="buy-now-button simple-bttn-4"> <i class="fa fa-"></i>Buy Now</button>
+    {% include 'components/nav.html'%}
+    <div class="home-body-container">
+        <div class="search-box-wrapper">
+            
+            </div>
+            <br>
+            <div class="search-results">
+        
+                <div class="result-card">
+                    <a href="#" class="result-card-anchor">
+                        <div class="book-image-div">
+                            <img class="book-image" src="{% static 'media/images/Home/book.avif' %}" alt="{Book-name}" />
+                        </div>
+                        <div class="book-details-div">
+                            <div class="book-name"><b>The Dreaming Arts</b></div>
+                            <div class="book-description">Fingerprint! Publishing (1 February 2021); Prakash Books India Pvt. Ltd.</div>
+                            <div class="book-price"><b>&#8377;90 </b></div>
+                        </div>
+                    </a>
+                    <div class="book-result-card-button-container">
+                        <div>
+                            <button class="add-to-cart-button simple-bttn-3"> <i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                        </div>
+                        <div>
+                            <button class="buy-now-button simple-bttn-4"> <i class="fa fa-"></i>Buy Now</button>
+                        </div>
                     </div>
                 </div>
+        
+        
+        
+        
+        
+        
             </div>
-    
-    
-    
-    
-    
-    
-        </div>
 
-</div>
+    </div>
 
 </body>
 </html>

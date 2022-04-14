@@ -1,0 +1,100 @@
+.home-body-container{
+    height: auto;
+    width: auto;
+    padding: var(--body-start-position) 0 0 0 ;
+}
+
+.search-results{
+    display: grid;
+    width:100%;
+    gap: 3vw;
+    grid-template-columns: 22% 22% 22% 22%;
+    justify-content: center;
+}
+.result-card{
+    position: relative;
+    border-radius:5px;
+    border:0.5px solid var(--theme-light-1)
+}
+.result-card-anchor{
+    text-decoration: none;
+    display: grid;
+    color:var(--black);
+    padding:1vh 1vw;;
+    justify-content: center;
+}
+.result-card-anchor div{
+    width:100%;
+}
+.result-card .book-image-div{
+    display: grid;
+    justify-content: center;
+}
+.result-card .book-image{
+    width: 10vw;
+    height:30vh;
+    object-fit: contain;
+    justify-self: center;
+}
+.result-card .book-name{
+    justify-self: center;
+    text-align: center;
+    font-size: 20px;
+    padding:1vh 0;
+}
+.result-card .book-price{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 1vh 0 0 0 ;
+}
+.book-result-card-button-container{
+    display:flex;
+    justify-content: space-around;
+    width:100%;
+    padding:1vh 0vw;
+}
+.add-to-cart-button , .buy-now-button{
+    padding:1vh 1vw;
+    width:10vw;
+    color: var(--white);
+    white-space: nowrap;
+}
+@media screen and (max-width: 1024px){
+    .search-results{
+        grid-template-columns: 95%;
+    }
+    .result-card{
+        height:100%;
+    }
+    .result-card-anchor{
+        grid-template-columns: 35% auto;
+        justify-content: center;
+        gap:2vw;
+        white-space: normal;
+    }
+
+    .book-image-div{
+        padding: 0 1vw;
+    }
+    .book-details-div{
+        display: grid;
+        height:100%;
+    }
+    .result-card .book-image{
+        height:40vw;
+    }
+    .add-to-cart-button , .buy-now-button{
+        width:42vw;    
+    }
+    .result-card .book-image{
+        object-fit:contain;
+        width:100%;
+    }  
+    .result-card .book-name{
+        text-align: left;
+    }
+    .result-card .book-price{
+        display: grid;
+        align-items: center;
+    }
+}
