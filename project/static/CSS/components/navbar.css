@@ -1,4 +1,4 @@
-*{
+/* *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -60,7 +60,7 @@
     gap:01%
 }
 
-@media screen and (max-width: 1080px) {    
+@media screen and (max-width: 1024px) {    
     .navbar{
         grid-template:'logo ham-icon';
         font-size: 15px;
@@ -100,4 +100,4 @@
         padding: 0 10% 0 0;
         z-index: 2;
     }
-}      
+}       */

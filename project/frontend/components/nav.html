@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}" />
+   <link rel="stylesheet" type="text/css" href="{% static 'CSS/components/nav.css' %}" />
+</head>
+<body>
+    <nav>
+        <div class="navbar-wrapper">
+            <div class="nav-col-1 disp-flex">
+                    <div class="hamburger-icon">
+                        <div class="hamburger-line" id="hamburger_container" onclick="show_navbar()">
+                            <span class="line"  id="line1"></span>
+                            <span class="line"  id="line2"></span>
+                            <span class="line"  id="line3"></span>
+                        </div> 
+                    </div>
+                    <div class="logo" id="logo">
+                        <h1>Bookshark</h1>
+                    </div>
+            </div>
+            <div class="nav-col-2 disp-flex search-box-wrapper">
+                <div class="book-category">
+                    <select class="book-category-select" name="book_category" id="">
+                        <option value="Educational">Educational</option>
+                        <option value="Action and Adventure">Action and Adventure</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
+                        <option value="Detective and Mystery">Detective and Mystery</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Historical Fiction">Historical Fiction</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Literary Fiction">Literary Fiction</option>
+                        <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
+                        <option value="Short Stories">Short Stories</option>
+                        <option value="Suspense and Thrillers">Suspense and Thrillers</option>
+                        <option value="Women's Fiction">Women's Fiction</option>
+                        <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
+                        <option value="Cookbooks">Cookbooks</option>
+                        <option value="Essays">Essays</option>
+                        <option value="History">History</option>
+                        <option value="Memoir">Memoir</option>
+                        <option value="Self-Help">Self-Help</option>
+                        <option value="True Crime">True Crime</option>
+                    </select>
+                </div>
+                <div class="search-box-container disp-flex">
+                    <div class="">
+                        <input type="text" value="" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
+                    </div>
+                    <div class="search-button">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div>
+            </div>
+            <div class=" disp-flex nav-col-3 user-credentials">
+                <a href="" ><i class="fa fa-user"></i></a>
+                <a href="">Login</a>
+                <a href="">Signup</a>
+            </div>
+        </div>
+    </nav>
+    <div class="hidden-nav-container hide-nav-container" id="hidden_nav">
+        <div class="hidden-nav" id="link_container_wrapper">
+            <div class="link-container" id="link_container">
+                <a href="" class="nav-links"><div class="nav-link-div">Home</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">Sell Books</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">Profile</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">About Us</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">Contact Us</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">Help</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">Login</div></a>
+                <a href="" class="nav-links"><div class="nav-link-div">SignUp</div></a>
+            </div>
+        </div>
+        <script>
+            function show_navbar(){
+                document.getElementById('hidden_nav').classList.toggle('hide-nav-container');
+                document.getElementById('hamburger_container').classList.toggle('hamburger-container');
+                document.getElementById('logo').classList.toggle('logo-on-ham-clicked');
+                document.getElementById('line1').classList.toggle('line1');
+                document.getElementById('line2').classList.toggle('line2');
+                document.getElementById('line3').classList.toggle('line3');
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -24,41 +24,7 @@
         width: auto;
         padding: 70px 0 0 0 ;
     }
-    .search-box-wrapper {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        justify-content: center;
-        position: relative;
-        background-color: var(--color-2);
-        padding: 10px 0;
-        gap: 0;
-        color:var(--color-2);
-    }
-    .search-button , .search-box-close-bttn{
-        background-color:white;
-        display:grid;
-        align-items: center;
-        height:var(--search-box-height);
-        padding: 0 15px;
-    }
-    .search-button{
-        border-top-left-radius: 100%;
-        border-bottom-left-radius: 100%;
-    }
-    .search-box-close-bttn{
-        border-top-right-radius: 100%;
-        border-bottom-right-radius: 100%;
-    }
-    .search-box-container{
-        display:grid;
-        align-items: center;
-    }
-    .search-box-container input{
-        height: var(--search-box-height);
-        width:30vw;
-        border: none;
-        outline: none;
-    }
+
     .search-results{
         display: grid;
         width:100%;
@@ -69,7 +35,7 @@
     .result-card{
         position: relative;
         border-radius:5px;
-        box-shadow: 0px 0px 30px 1px #dad6da;
+        border:0.1px solid var(--theme-light-1)
     }
     .result-card-anchor{
         text-decoration: none;
@@ -115,13 +81,6 @@
         white-space: nowrap;
     }
     @media only screen and (max-width:768px){
-        
-        .search-box-container input{
-            width:70vw;
-        }
-        .search-results{
-                grid-template-columns: 90%;
-        }
 
         .result-card{
             height:100%;
@@ -162,18 +121,10 @@
 </style>    
 
 <body>
-{% include 'components/navbar.html' %}
+{% include 'components/nav.html' %}
 <div class="home-body-container">
     <div class="search-box-wrapper">
-            <div class="search-button">
-                <i class="fa fa-search"></i>
-            </div>
-            <div class="search-box-container">
-                <input type="text" value="" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
-            </div>
-            <div class="search-box-close-bttn">
-                <i class="fa fa-close"></i>
-            </div>
+         
         </div>
         <br>
         <div class="search-results">
