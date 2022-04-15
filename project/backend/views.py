@@ -8,10 +8,15 @@ from django.core.files.storage import FileSystemStorage
 import random
 
 def home(request):
-    return render(request,'pages/home/index.html')
+    show_books = book_images.objects.all()
+    book_data = listing_books.objects.all()
+    return render(request,'pages/home/index.html',{'book_data':book_data,'book_images':show_books})
 
-def navbar(request):
-    return render(request,'components/nav.html')
+def product(request):
+    return render(request,'pages/product/Product.html')
+
+def profile(request):
+    return render(request,'pages/profile/ProfilePage.html')
 
 def sell(request):
     if request.method == 'POST':
@@ -24,7 +29,6 @@ def sell(request):
         book_selling_price = request.POST['book_selling_price']
         book_description = request.POST['book_description']
 
-        file = request.FILES['image_file']
 
         list_book_details = listing_books.objects.create(
             book_name=book_name, 
@@ -40,14 +44,19 @@ def sell(request):
         list_book_details.save()
 
 
+
+        images = request.FILES.getlist('image_file')
+
         # file_type = request.POST['image_type']
-        fs = FileSystemStorage(location= 'books/'+str(list_book_details.pk)+"/")
-        file_details = book_images.objects.create(
-            path = str(list_book_details.pk)+"/"+file.name,
-            book_uid = listing_books.objects.get(pk = list_book_details.pk)
-            )
-        file_details.save()
-        fs.save(file.name,file)
+        for image in images:
+            print(image.name)
+            fs = FileSystemStorage(location= 'books/'+str(request.session.get("user_unique_id"))+"/"+str(list_book_details.pk))
+            fs.save(image.name,image)
+            file_details = book_images.objects.create(
+                path = str(str(request.session.get("user_unique_id")))+"/"+ str(list_book_details.pk)+"/"+image.name,
+                book_uid = listing_books.objects.get(pk = list_book_details.pk)
+                )
+            file_details.save()
 
     return render(request,'pages/sell/listbook.html')
 
@@ -148,4 +157,3 @@ def otp_page(request):
         else:
             messages.error(request,"Invalid OTP")
     return render(request,"pages/otp_verification/otp_verification.html")
-

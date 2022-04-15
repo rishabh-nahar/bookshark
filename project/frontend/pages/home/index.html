@@ -8,12 +8,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/index.css' %}?" %}>
-</head>
-
-<style>
-
-
-</style>    
+</head> 
 
 <body>
     {% include 'components/nav.html'%}
@@ -24,10 +19,18 @@
             <br>
             <div class="search-results">
         
+
+
                 <div class="result-card">
-                    <a href="#" class="result-card-anchor">
+                    <a href="/product" class="result-card-anchor">
                         <div class="book-image-div">
-                            <img class="book-image" src="{% static 'media/images/Home/book.avif' %}" alt="{Book-name}" />
+                            
+                            <div class="slideshow-container">
+                                <div class="mySlides fade">
+                                <img class="book-image" src="{% static 'media/images/Home/book.avif' %}" alt="{Book-name}" />
+                                </div>
+                            </div>
+
                         </div>
                         <div class="book-details-div">
                             <div class="book-name"><b>The Dreaming Arts</b></div>
@@ -46,13 +49,64 @@
                 </div>
         
         
-        
+                {% for book in book_data %}
+
+
+                <div class="result-card">
+                    <a href="/product" class="result-card-anchor">
+                        {% for image in book_images %}
+                            {% if image.book_uid.pk == book.pk  %}
+                                <div class="book-image-div">
+                                    <img class="book-image" src="/books/{{image.path}}" alt="{{book.book_name}}" />
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="book-details-div">
+                            <div class="book-name"><b>{{book.book_name}}</b></div>
+                            <div class="book-description">{{ book.book_description }}</div>
+                            <div class="book-Mrp"><strike><b>&#8377;{{book.book_mrp}}</b></strike></div>
+                            <div class="book-price"><b>&#8377;{{book.book_selling_price}}</b></div>
+                        </div>
+                    </a>
+                    <div class="book-result-card-button-container">
+                        <div>
+                            <button class="add-to-cart-button simple-bttn-3"> <i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                        </div>
+                        <div>
+                            <button class="buy-now-button simple-bttn-4"> <i class="fa fa-"></i>Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {% endfor %}
         
         
         
             </div>
 
     </div>
+    <script type="text/javascript">
+        let slideIndex = 0;
+        showSlides();
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+          }
+    </script>
 
 </body>
 </html>

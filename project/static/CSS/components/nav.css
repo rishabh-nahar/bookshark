@@ -158,31 +158,32 @@ nav{
 
 @media (max-width: 1086px){
     .navbar-wrapper{
-        grid-template-columns: 40vw auto;
+        grid-template-columns: 50vw auto;
         row-gap: 0.5vh;
         width: 100vw;
-        padding: 1vh;
-        grid-template-areas: "col1 col1" "col2 col2";
+        padding: 1vh 1vw;
+        grid-template-areas: "col1 col3" "col2 col2";
     }   
     .nav-col-1{
         justify-content: left;
     }
     
     .book-category{
-        display: none;
+        width: 30vw;
     }
     .search-box-wrapper{
-        grid-template-columns: 100%;
+        grid-template-columns: auto auto;
+        justify-content:left;
     }
     .search-box-container input{
-        width: calc(100vw - 100px);
+        width: calc(70vw - 80px);
     }
    
     .nav-col-3{
         display: none;
     } 
     .hamburger-container{
-        transform: translateX(calc(100vw - 80px))
+        transform: translateX(calc(98vw - 5vw))
     }
     .hidden-nav-container {
         width:100vw;
