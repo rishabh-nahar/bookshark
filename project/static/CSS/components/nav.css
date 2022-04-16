@@ -4,9 +4,9 @@
     padding: 0;
 }
 nav{
-    position: fixed;
-    width: 100%;
     display:grid;
+    position: fixed;
+    width: 100vw;
     justify-content:center;
     z-index: 6;
     background-color:var(--theme-light-1)
@@ -71,7 +71,7 @@ nav{
     transform: translateX(-45px);
 }
 .hamburger-container{
-    transform: translateX(12vw);
+    transform: translateX(10vw);
     transition: all 0.4s ease;
 }
 .hamburger-line .line1 {
@@ -135,7 +135,7 @@ nav{
     position:fixed;
     padding: var(--body-start-position) 0;
     transition: transform 0.3s ease;
-    width: 25vw;
+    width: 20vw;
     box-shadow: 10px 10px 70px -4px rgba(224,224,224,0.51);
     z-index: 4;
     background-color:var(--theme-light-1);
@@ -147,7 +147,7 @@ nav{
 .hidden-nav{
     display: grid;
     justify-items:center;
-    width: 25vw;
+    width: 20vw;
     height: calc(100vh - var(--body-start-position));
 }
 
@@ -159,17 +159,16 @@ nav{
 @media (max-width: 1086px){
     .navbar-wrapper{
         grid-template-columns: 50vw auto;
-        row-gap: 0.5vh;
+        row-gap: 1vh;
         width: 100vw;
         padding: 1vh 1vw;
-        grid-template-areas: "col1 col3" "col2 col2";
+        grid-template-areas: "col1 col1" "col2 col2";
     }   
     .nav-col-1{
         justify-content: left;
     }
-    
     .book-category{
-        width: 30vw;
+        width: 25vw;
     }
     .search-box-wrapper{
         grid-template-columns: auto auto;
@@ -183,7 +182,7 @@ nav{
         display: none;
     } 
     .hamburger-container{
-        transform: translateX(calc(98vw - 5vw))
+        transform: translateX(calc(92vw - 5vw))
     }
     .hidden-nav-container {
         width:100vw;

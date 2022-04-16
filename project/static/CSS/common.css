@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope:wght@400;600&display=swap');;
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope:wght@400;600&display=swap');
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: red;
-}
 :root{
 
     --black: #0f0f0f;
@@ -31,11 +25,19 @@
     --search-box-height: 40px;
     --body-start-position:70px;
 }
-@media only screen and (max-width:768px){
+@media only screen and (max-width:1086px){
     :root{
         --body-start-position:100px;
     }
 }
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:var(--font-2);    
+}
+/* predefined classes for easy work */
 .hidden {
 	display: none !important;
 }
@@ -50,12 +52,6 @@
     display: grid;
     grid-template-columns:  auto auto;
 }
-
-a{
-    text-decoration: none;
-    color: black;
-}
-
 
 .show-on-desktop{
     display:block;
@@ -78,34 +74,43 @@ a{
 }
 
 
+/* predefined tag styles */
+a{
+    text-decoration: none;
+    color: black;
+}
 
-/* ========== Button styles =========== */
 button {
     border: none;
     background: transparent;
-}
-.simple-bttn{
-    background-color:#ffd45e;
-    border:transparent;
-    font-size: 25px;
-    padding:10px 15px;
-    border-radius:2px;
-    color:white;
-}
-
-
-
-.simple-bttn-2 {
-    border: none;
-    border-radius: 2px;
     outline: 0;
-    display: inline-block;
-    padding: 8px 8px;
-    color: white;
-    background-color: #000;
+}
+
+input{
+    outline:none
+}
+
+/* ========== Button styles =========== */
+
+.simple-bttn{
+    padding:10px 15px;
     text-align: center;
     cursor: pointer;
     width: 100%;
+    border-radius: 2px;
+}
+
+.simple-bttn-1{
+    background-color:#0d658a;
+    border-radius:2px;
+    color:white;
+
+}
+
+.simple-bttn-2 {
+    border-radius: 2px;
+    color: white;
+    background-color: #000;
 }
 
 .simple-bttn-2:hover {
@@ -120,21 +125,16 @@ button {
 .simple-bttn-4{
     background:var(--color-1);
     border-radius:2px;
+    color: var(--white);
 }
 
 .simple-bttn-circle{
     border-radius: 50%;
-    font-size: 30px;
-    border: transparent;
-    background:#95adbe;
-    color: white;
 }
 
 
 /* ========== Input styles =========== */
-input{
-    outline:none
-}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

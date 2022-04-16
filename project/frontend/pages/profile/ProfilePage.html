@@ -19,7 +19,7 @@
             </div>
             <div class="seller-container">
                 <div class="sellername">
-                    Hello, Username
+                        Hello, {{user_detail.first_name}} {{user_detail.last_name}}
                 </div>
             </div>
             <div class="menus">
@@ -64,112 +64,49 @@
             </div>
             <div class="postedbook-list">
                 
+                {% for books in book_details %}
+
                 <div class="book">
                     <div class="bookImgContent">
                         <div class="book-img">
-                            <img src="{% static 'media/images/for_dev_mode/wingsOfFire.jpg' %}" alt="Boook Image uploaded by seller">
+                            {% for book_image in book_images %}
+                                {% if book_image.book_uid.pk == books.pk  %}
+                                    <img src="books/{{book_image.path}}" alt="Boook Image uploaded by seller">
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                        
                     </div> 
+
                     <div class="bookDesc">
                         <div class="book-title">
-                            <h1>Wings of fire</h1>
+                            <h2>{{books.book_name}}</h2>
                         </div>
+                        <div class="book-desc">{{books.book_description}}</div>
                         <div class="book-author">
-                            <!-- <div class="username">
-                                Uploaded by <a>Jayesh Wadhe</a>
-                            </div> -->
                             <div class="authorname">
-                                Author/publisher-<a>Rishabh nahar</a>
+                                Author-<a>{{ books.book_author }}</a><br>
+                                publisher-<a>{{ books.book_publisher }}</a>
                             </div>
                         </div>
                 
                         <div class="pricetag">
-                            <h3 class="price">&#8377;200</h3>
-                            <h3 class="offerprice">&#8377;160</h3>
+                            <h3 class="price">&#8377;{{books.book_mrp}}</h3>
+                            <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
                         </div>
                         <div class="bookbtns">
-                            <div class="viewbookbtn">
-                                <a href="#"> View Book</a>
+                            <div class="">
+                                <a href=""><button class="col-white simple-bttn simple-bttn-1">View Book</button></a>
                             </div> 
-                            <div class="buybtn">
-                                <a href="#">Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="book">
-                    <div class="bookImgContent">
-                        <div class="book-img">
-                            <img src="{% static 'media/images/for_dev_mode/wingsOfFire.jpg' %}" alt="Boook Image uploaded by seller">
-                        </div>
-                        
-                    </div> 
-                    <div class="bookDesc">
-                        <div class="book-title">
-                            <h1>Wings of fire</h1>
-                        </div>
-                        <div class="book-author">
-                            <!-- <div class="username">
-                                Uploaded by <a>Jayesh Wadhe</a>
-                            </div> -->
-                            <div class="authorname">
-                                Author/publisher-<a>Rishabh nahar</a>
-                            </div>
-                        </div>
-                
-                        <div class="pricetag">
-                            <h3 class="price">&#8377;200</h3>
-                            <h3 class="offerprice">&#8377;160</h3>
-                        </div>
-                        <div class="bookbtns">
-                            <div class="viewbookbtn">
-                                <a href=""> View Book</a>
-                            </div> 
-                            <div class="buybtn">
-                                <a href="">Buy Now</a>
+                            <div class="">
+                                <a href=""><button class=" simple-bttn simple-bttn-2 col-white">Edit</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="book">
-                    <div class="bookImgContent">
-                        <div class="book-img">
-                            <img src="{% static 'media/images/for_dev_mode/wingsOfFire.jpg' %}" alt="Boook Image uploaded by seller">
-                        </div>
-                        
-                    </div> 
-                    <div class="bookDesc">
-                        <div class="book-title">
-                            <h1>Wings of fire</h1>
-                        </div>
-                        <div class="book-author">
-                            <!-- <div class="username">
-                                Uploaded by <a>Jayesh Wadhe</a>
-                            </div> -->
-                            <div class="authorname">
-                                Author/publisher-<a>Rishabh nahar</a>
-                            </div>
-                        </div>
-                
-                        <div class="pricetag">
-                            <h3 class="price">&#8377;200</h3>
-                            <h3 class="offerprice">&#8377;160</h3>
-                        </div>
-                        <div class="bookbtns">
-                            <div class="viewbookbtn simple-bttn-1">
-                                <a href=""> View Book</a>
-                            </div> 
-                            <div class="buybtn">
-                                <a href="">Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
-                
-            
+                    
             </div>
         </div>
     </div>

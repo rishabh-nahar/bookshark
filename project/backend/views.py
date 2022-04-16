@@ -16,7 +16,14 @@ def product(request):
     return render(request,'pages/product/Product.html')
 
 def profile(request):
-    return render(request,'pages/profile/ProfilePage.html')
+    user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
+    book_data = listing_books.objects.filter(book_seller_id = request.session.get('user_unique_id'))
+    show_books = book_images.objects.filter(book_uid_id__in	 = book_data)
+    return render(request,'pages/profile/ProfilePage.html',{
+        'book_details':book_data,
+        'user_detail':user_details_to_display,
+        'book_images':show_books
+        })
 
 def sell(request):
     if request.method == 'POST':

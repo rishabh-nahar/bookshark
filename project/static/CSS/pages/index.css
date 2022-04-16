@@ -29,12 +29,18 @@
 .result-card .book-image-div{
     display: grid;
     justify-content: center;
+    height:30vh;
+    overflow: hidden;
 }
 .result-card .book-image{
-    width: 10vw;
+    width: 12vw;
     height:30vh;
+    border-radius: 2px;
     object-fit: contain;
     justify-self: center;
+}
+.book-details-div *{
+    /* border: 0.2px solid var(--color-3)    ; */
 }
 .result-card .book-name{
     justify-self: center;
@@ -42,10 +48,30 @@
     font-size: 20px;
     padding:1vh 0;
 }
+.result-card .book-description{
+    width:20vw;
+    height:38px;
+    font-size:13px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color:grey;
+}
+.result-card .book-prices{
+    display:grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: left;
+    
+}
+.result-card .book-Mrp{
+    color:red;
+}
 .result-card .book-price{
     font-size: 20px;
     font-weight: bold;
-    padding: 1vh 0 0 0 ;
+    color:green;
 }
 .book-result-card-button-container{
     display:flex;
@@ -59,20 +85,26 @@
     color: var(--white);
     white-space: nowrap;
 }
+
+
 @media screen and (max-width: 1024px){
     .search-results{
-        grid-template-columns: 95%;
+        grid-template-columns: 45vw auto;
+        align-items: center;
     }
     .result-card{
         height:100%;
     }
     .result-card-anchor{
-        grid-template-columns: 35% auto;
-        justify-content: center;
+        grid-template-columns: 35% 65%;
+        align-items: center;
+        justify-content: left;
         gap:2vw;
         white-space: normal;
     }
-
+    .result-card .book-description{
+        width:100%;
+    }
     .book-image-div{
         padding: 0 1vw;
     }
@@ -84,17 +116,18 @@
         height:40vw;
     }
     .add-to-cart-button , .buy-now-button{
-        width:42vw;    
+        width:21vw;    
     }
-    .result-card .book-image{
-        object-fit:contain;
-        width:100%;
-    }  
     .result-card .book-name{
         text-align: left;
     }
     .result-card .book-price{
         display: grid;
         align-items: center;
+    }
+}
+@media screen and (max-width: 768px){
+    .search-results{
+        grid-template-columns: 95vw;
     }
 }
