@@ -26,7 +26,7 @@
 
 
                 <div class="result-card">
-                    <a href="/product" class="result-card-anchor">
+                    <a href="/product/{{book.pk}}" class="result-card-anchor">
                         <div class="book-image-div image-container">
                             {% for image in book_images %}
                                 {% if image.book_uid.pk == book.pk  %}

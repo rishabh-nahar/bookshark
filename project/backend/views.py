@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from  django.contrib import messages    
 from backend.models import book_images, user_details, listing_books
 from django.template.loader import render_to_string
@@ -12,8 +12,12 @@ def home(request):
     book_data = listing_books.objects.all()
     return render(request,'pages/home/index.html',{'book_data':book_data,'book_images':show_books})
 
-def product(request):
-    return render(request,'pages/product/Product.html')
+def product(request,productid): 
+    book_data = get_object_or_404(listing_books,pk=productid)
+
+    book_image = book_images.objects.filter(book_uid = book_data)
+
+    return render(request,'pages/product/Product.html',{'book_data':book_data,'book_images':book_image})
 
 def profile(request):
     user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
