@@ -168,3 +168,6 @@ def otp_page(request):
         else:
             messages.error(request,"Invalid OTP")
     return render(request,"pages/otp_verification/otp_verification.html")
+
+def about(request):
+    return render(request,"other/about/about.html")

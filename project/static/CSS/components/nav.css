@@ -142,7 +142,7 @@ nav{
 }
 .hide-nav-container{
     position: fixed;
-    transform: translateX(-200vh) translateY(0);
+    transform: translateX(-200vw) translateY(0);
 }
 .hidden-nav{
     display: grid;

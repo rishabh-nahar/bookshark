@@ -12,4 +12,6 @@ urlpatterns = [
     path('otp_page', views.otp_page,name="otp_page"),
 
     path('sell', views.sell,name="sell"),
+ 
+    path('about', views.about,name="about"),
 ]

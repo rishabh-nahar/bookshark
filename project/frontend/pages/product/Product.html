@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   </head>
   <body>
+    
     {% include "components/nav.html" %}
     <div class="body-position">
       <div class = "card-wrapper">
@@ -22,32 +23,23 @@
                 {% for image in book_images %}
                       <img class="book-image" src="/books/{{image.path}}" alt="{{book.book_name}}"  />
                 {% endfor %}
-                <img src = "{% static 'media/images/for_dev_mode/shoe_4.jpg' %}" alt = "shoe image">
               </div>
             </div>
 
             <div class = "img-select">
-              <div class = "img-item">
-                <a href = "#" data-id = "1">
-                  <img src = "{% static 'media/images/for_dev_mode/shoe_1.jpg' %}" alt = "shoe image">
-                </a>
-              </div>
-              <div class = "img-item">
-                <a href = "#" data-id = "2">
-                  <img src = "{% static 'media/images/for_dev_mode/shoe_2.jpg' %}" alt = "shoe image">
-                </a>
-              </div>
-              <div class = "img-item">
-                <a href = "#" data-id = "3">
-                  <img src = "{% static 'media/images/for_dev_mode/shoe_3.jpg' %}" alt = "shoe image">
-                </a>
-              </div>
-              <div class = "img-item">
-                <a href = "#" data-id = "4">
-                  <img src = "{% static 'media/images/for_dev_mode/shoe_4.jpg' %}" alt = "shoe image">
-                </a>
-              </div>
+    
+              {% for image in book_images %}
+                <div class = "img-item">
+                  <a href = "#" data-id = "{{ forloop.counter }}">
+                      <img class="book-image" src="/books/{{image.path}}" alt="{{book.book_name}}"   />
+                  </a>
+                </div>
+              {% endfor %}
+                
+
             </div>
+            
+
           </div>
           <!-- card right -->
           <div class = "product-content">
@@ -63,8 +55,8 @@
             </div>
 
             <div class = "product-price">
-              <p class = "last-price">Old Price: <span>&#8377;{{book_data.book_mrp}}</span></p>
-              <p class = "new-price">New Price: <span>&#8377;{{book_data.book_selling_price}}</span></p>
+              <p class = "last-price">MRP: <span>&#8377;{{book_data.book_mrp}}</span></p>
+              <p class = "new-price">Selling Price: <span>&#8377;{{book_data.book_selling_price}}</span></p>
             </div>
 
             <div class = "product-detail">
@@ -80,7 +72,6 @@
             </div>
 
             <div class = "purchase-info">
-              <input type = "number" min = "0" value = "1">
               <button type = "button" class = "btn">
                 Buy
               </button>
@@ -89,20 +80,17 @@
 
             <div class = "social-links">
               <p>Share At: </p>
-              <a href = "#">
+              <a href = "https://www.facebook.com/sharer/sharer.php?u=" class="social-links-anchor"  target="_blank">
                 <i class = "fab fa-facebook-f"></i>
               </a>
-              <a href = "#">
+              <a href = "https://twitter.com/share?url="  class="social-links-anchor">
                 <i class = "fab fa-twitter"></i>
               </a>
-              <a href = "#">
-                <i class = "fab fa-instagram"></i>
+              <!-- <a href = ""  class="social-links-anchor">
+                <i class = "fab fa-instagram"></i> -->
               </a>
-              <a href = "#">
+              <a href="whatsapp://send?text="  class="social-links-anchor" data-action="share/whatsapp/share"  target="_blank">
                 <i class = "fab fa-whatsapp"></i>
-              </a>
-              <a href = "#">
-                <i class = "fab fa-pinterest"></i>
               </a>
             </div>
           </div>
@@ -110,7 +98,16 @@
       </div>
 
     </div>
-    
+    <script>
+      var window_loc = document.location;
+      var social_links = document.getElementsByClassName("social-links-anchor");
+
+      for (var i = 0; i < social_links.length; i++) {
+        prev_href = social_links[i].href
+        social_links[i].href = prev_href + window_loc;
+        // console.log(social_links[i].href+"<br>");
+      }
+    </script>
     <script src="{% static 'javascript/product.js' %}"></script>
   </body>
 </html>
