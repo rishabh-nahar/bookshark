@@ -2,14 +2,10 @@
 *{
     font-family: 'Open Sans', sans-serif;
 }
-body{
-    /* line-height: 1.5; */
-}
 .body-position{
     padding: var(--body-start-position) 5vw;
 
 }
-
 img{
     width: 100%;
     display: block;
@@ -29,7 +25,6 @@ img{
 .img-select{
     display: flex;
     padding:1vh 0;
-    width: 50vw;
     overflow: hidden;
     /* align-items: center; */
     justify-content: center;
@@ -197,6 +192,9 @@ img{
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .img-select{
+        width:50vw;
     }
     .product-imgs{
         display: flex;

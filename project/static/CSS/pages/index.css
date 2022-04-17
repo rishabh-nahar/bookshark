@@ -130,4 +130,7 @@
     .search-results{
         grid-template-columns: 95vw;
     }
+    .book-image{
+        border: 1px solid #dbdbdb;
+    }
 }
