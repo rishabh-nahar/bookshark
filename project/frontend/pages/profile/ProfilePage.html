@@ -14,9 +14,12 @@
     {% include 'components/nav.html' %}
     <div class="page">
         <div class="profile-container" >
+
+            
             <div class="photo-container">
                 <img src="{% static 'media/images/for_dev_mode/profile.png' %}" alt="Profilephto here">
             </div>
+            
             <div class="seller-container">
                 <div class="sellername">
                         Hello, {{user_detail.first_name}} {{user_detail.last_name}}
