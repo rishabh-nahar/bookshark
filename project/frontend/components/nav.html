@@ -1,16 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}" />
-   <link rel="stylesheet" type="text/css" href="{% static 'CSS/components/nav.css' %}" />
-</head>
-<body>
+
     <nav>
         <div class="navbar-wrapper">
             <div class="nav-col-1 disp-flex">
@@ -62,23 +51,36 @@
                 </div>
             </div>
             <div class=" disp-flex nav-col-3 user-credentials">
-                <a href="" ><i class="fa fa-user"></i></a>
-                <a href="/loginpage">Login</a>
-                <a href="/registeration_page">Signup</a>
+                {% if user_id %}
+                    <a href="/profile" ><i class="fa fa-user" ></i></a>
+                    &nbsp;
+                    <a href="/logout"><i class="fa fa-sign-out"></i></a>
+                    {% else %}
+                    <a href="/loginpage">Login</a>
+                    <a href="/registeration_page">Signup</a>
+                {% endif %}
             </div>
         </div>
     </nav>
     <div class="hidden-nav-container hide-nav-container" id="hidden_nav">
         <div class="hidden-nav" id="link_container_wrapper">
             <div class="link-container" id="link_container">
-                <a href="/" class="nav-links"><div class="nav-link-div">Home</div></a>
-                <a href="/sell" class="nav-links"><div class="nav-link-div">Sell Books</div></a>
-                <a href="/profile" class="nav-links"><div class="nav-link-div">Profile</div></a>
-                <a href="/about" class="nav-links"><div class="nav-link-div">About Us</div></a>
-                <a href="" class="nav-links"><div class="nav-link-div">Contact Us</div></a>
-                <a href="" class="nav-links"><div class="nav-link-div">Help</div></a>
-                <a href="/loginpage" class="nav-links"><div class="nav-link-div">Login</div></a>
-                <a href="/registeration_page" class="nav-links"><div class="nav-link-div">SignUp</div></a>
+                    <a href="/" class="nav-links">
+                        <div class="nav-link-div"><i class="fa fa-home"></i> &nbsp; Home</div>
+                    </a>
+                {% if user_id %}
+                    <a href="/sell" class="nav-links"><div class="nav-link-div"><i class="fa fa-book"></i>  &nbsp; Sell Books</div></a>
+                    <a href="/profile" class="nav-links"><div class="nav-link-div"><i class="fa fa-user"></i> &nbsp; Profile</div></a>
+                {% endif %}
+                    <a href="/about" class="nav-links"><div class="nav-link-div"><i class="fa fa-info-circle"></i> &nbsp; About Us</div></a>
+                    <a href="" class="nav-links"><div class="nav-link-div"><i class="fa fa-phone"></i> &nbsp; Contact Us</div></a>
+                    <a href="" class="nav-links"><div class="nav-link-div"><i class="fa fa-question"></i> &nbsp; Help</div></a>
+                {% if user_id == none %}
+                    <a href="/loginpage" class="nav-links"><div class="nav-link-div"><i class="fa fa-sign-in"></i> &nbsp; Login</div></a>
+                    <a href="/registeration_page" class="nav-links"><div class="nav-link-div"><i class="fa fa-user-plus"></i> &nbsp; SignUp</div></a>
+                {% else %}
+                    <a href="/logout" class="nav-links"><div class="nav-link-div"><i class="fa fa-sign-out"></i> &nbsp; Log Out</div></a>
+                {% endif %}
             </div>
         </div>
         <script>
@@ -92,9 +94,3 @@
             }
         </script>
     </div>
-
-    {% block content %}
-    {% endblock %}
-
-</body>
-</html>

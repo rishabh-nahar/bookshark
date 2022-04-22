@@ -10,26 +10,33 @@ import random
 def home(request):
     show_books = book_images.objects.all()
     book_data = listing_books.objects.all()
-    return render(request,'pages/home/index.html',{'book_data':book_data,'book_images':show_books})
+    user_id = request.session.get("user_unique_id")
+
+    context = {'book_data':book_data,'book_images':show_books,"user_id":user_id}
+
+    return render(request,'pages/home/index.html',context)
 
 def product(request,productid): 
     book_data = get_object_or_404(listing_books,pk=productid)
-
     book_image = book_images.objects.filter(book_uid = book_data)
-
-    return render(request,'pages/product/Product.html',{'book_data':book_data,'book_images':book_image})
+    user_id = request.session.get("user_unique_id")
+    context = {'book_data':book_data,'book_images':book_image ,"user_id":user_id}
+    return render(request,'pages/product/Product.html',context)
 
 def profile(request):
     user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
     book_data = listing_books.objects.filter(book_seller_id = request.session.get('user_unique_id'))
     show_books = book_images.objects.filter(book_uid_id__in	 = book_data)
-    return render(request,'pages/profile/ProfilePage.html',{
+    user_id = request.session.get("user_unique_id")
+    context = {
         'book_details':book_data,
         'user_detail':user_details_to_display,
-        'book_images':show_books
-        })
-
+        'book_images':show_books,
+        'user_id': user_id
+        }
+    return render(request,'pages/profile/ProfilePage.html',context)
 def sell(request):
+    user_id = request.session.get("user_unique_id")
     if request.method == 'POST':
         book_name = request.POST['book_name']
         book_category = request.POST['book_category']
@@ -68,8 +75,8 @@ def sell(request):
                 book_uid = listing_books.objects.get(pk = list_book_details.pk)
                 )
             file_details.save()
-
-    return render(request,'pages/sell/listbook.html')
+    context  = {'user_id': user_id}
+    return render(request,'pages/sell/listbook.html',context)
 
 def loginpage(request):
     if request.method == "POST":
@@ -125,11 +132,12 @@ def registeration_page(request):
                 password = password,
                 )
             users.save()
+
             print("User Created")
             # We will load the html content first
             random_num = random.randint(1000,9999)
 
-            html_content = render_to_string("other/mail_templates/emailtemplate.html", {'name': first_name ,'otp':random_num })
+            html_content = render_to_string("other/mail_templates/mail_temp.html", {'name': first_name ,'otp':random_num })
 
             # html content jo load karenge usme se HTML tags nikal denge
             text_content = strip_tags(html_content)
@@ -170,4 +178,10 @@ def otp_page(request):
     return render(request,"pages/otp_verification/otp_verification.html")
 
 def about(request):
-    return render(request,"other/about/about.html")
+    user_id = request.session.get("user_unique_id")
+    context = {'user_id': user_id}
+    return render(request,"other/about/about.html",user_id)
+
+def logout(request):
+    request.session.flush()
+    return redirect(loginpage)

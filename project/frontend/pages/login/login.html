@@ -1,26 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" type="text/css" href="{% static 'CSS/commonforall.css' %}?" %}>
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/loginpage.css' %}?" %}>
 
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-        outline: none
-    }
-    
-</style>
+{% endblock %}
 
-</head>
-<body>
-{% include "components/nav.html" %}
+{% block content %}
+
     <div class="login-form-container">
     <div class="login-form">
         <div class="text-center login-head" id="login">Login Here</div>
@@ -37,18 +26,18 @@
                     <label for="name" class="input-field-label" id="password_label">Password:<span class="imp-field">*</span></label>
                 </div>
                 <div class="">
-                    <input class="simple-bttn simple-bttn-2" type="submit" name="submit"/>
+                    <Button class="simple-bttn simple-bttn-2" type="submit" name="submit">Login</Button>
                 </div>
             </div>
         </form>
-        <div class="forget-password-div">
+        <div class="forget-password-div grid-2">
             <a href="">Forget Password?</a>
+            <a href="">New User?</a>    
         </div>
     </div>
 </div>
-</body>
-<script>
-function input_field_focus(n){
+{% block scripts %}
+<script>function input_field_focus(n){
     document.getElementById(n).classList.add("input-field-focused")
 }
 function input_field_focusout(n,m){
@@ -59,4 +48,6 @@ function input_field_focusout(n,m){
 }
 
 </script>
-</html>
+
+{% endblock %}
+{% endblock %}

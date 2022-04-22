@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#c=)_9lp$#^n2a%q7nywv_i3xsqjn*erh3ivnc&f#ao)=g&h5p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.12"]
+ALLOWED_HOSTS = ["192.168.1.12","localhost","127.0.0.1"]
 
 
 # Application definition
@@ -143,4 +143,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'findmynotes2022@gmail.com'
-EMAIL_HOST_PASSWORD = 'radheradhe1217'
+EMAIL_HOST_PASSWORD = '_radhe_radhe_1217'
+
+
+RAZOR_KEY_ID = "rzp_test_JsyLrvhKMViT99"
+RAZOR_KEY_SECRET = "ibBmY1urwfNk63XaGnaLrxdX"

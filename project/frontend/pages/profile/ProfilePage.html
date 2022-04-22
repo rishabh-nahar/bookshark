@@ -1,17 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/ProfilePage.css' %}?" %}>
     <link rel="stylesheet" href="">
-</head>
-<body>
-    {% include 'components/nav.html' %}
+
+    
+{% endblock %}
+
+{% block content %}
+
     <div class="page">
         <div class="profile-container" >
 
@@ -65,8 +65,14 @@
             <div class="postedBooks">
                 <h3>Book Posted by you.</h3>
             </div>
+           
             <div class="postedbook-list">
-                
+            {% if book_details.count == 0  %}
+            <br/>
+            <div class = "card-no-books">
+                No Books listed
+            </div>
+            {% endif %}
                 {% for books in book_details %}
 
                 <div class="book">
@@ -113,5 +119,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+
+{% endblock %}

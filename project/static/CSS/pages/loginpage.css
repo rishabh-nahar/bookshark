@@ -4,7 +4,7 @@
 }
 .login-form-container{
     height:100vh;
-    width:100vw;
+    width:100%;
     background:var(--theme-light-2);
     display: grid;
     justify-content: center;
@@ -47,6 +47,9 @@
 }
 .forget-password-div a{
     text-decoration:none;
+}
+.forget-password-div{
+    justify-content:space-between;
 }
 @media screen and (max-width: 1024px){
     .input-field input{

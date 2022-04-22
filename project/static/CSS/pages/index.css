@@ -39,9 +39,7 @@
     object-fit: contain;
     justify-self: center;
 }
-.book-details-div *{
-    /* border: 0.2px solid var(--color-3)    ; */
-}
+
 .result-card .book-name{
     justify-self: center;
     text-align: center;
@@ -85,7 +83,9 @@
     color: var(--white);
     white-space: nowrap;
 }
-
+.buy-now-button a{
+    color: var(--white);
+}
 
 @media screen and (max-width: 1024px){
     .search-results{

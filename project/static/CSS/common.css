@@ -24,20 +24,23 @@
 
     --search-box-height: 40px;
     --body-start-position:70px;
+    --side-nav-width:20vw;
 }
 @media only screen and (max-width:1086px){
     :root{
         --body-start-position:100px;
-    }
+        --side-nav-width:100vw;
+}
 }
 
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family:var(--font-2);    
+    font-family:var(--font-2); 
+    outline: none   
 }
-/* predefined classes for easy work */
+/* predefined styles for easy work */
 .hidden {
 	display: none !important;
 }
@@ -98,6 +101,8 @@ input{
     cursor: pointer;
     width: 100%;
     border-radius: 2px;
+    outline: 0;
+    border: none;
 }
 
 .simple-bttn-1{

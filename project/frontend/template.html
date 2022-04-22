@@ -1,0 +1,40 @@
+{% block loadstatic %}
+    {% load static %}
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>{% block title %}Bookshark{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/components/nav.css' %}" />
+        <link rel="stylesheet" href="{% static 'CSS/components/footer.css' %}"/>
+
+    {% block style-links %}
+     {% endblock style-links %}
+
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block navbar %}
+            {% include 'components/nav.html'%}
+        {% endblock navbar %}
+    </div>
+    {% block  content %}
+    <div class="main-content"></div>
+    {% endblock content %}
+    
+
+   {% block scripts %}
+   {% endblock scripts %}
+    <br/>
+    {% block footer %}
+        {% include 'components/footer.html'%}
+    {% endblock footer%}
+
+</body>
+
+</html>

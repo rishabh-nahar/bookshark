@@ -1,16 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends "template.html" %}
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://kit.fontawesome.com/4312d0d9f5.js" crossorigin="anonymous"></script>
+{%  load static %}
+
+{% block style-links %}
+
 <link rel="stylesheet" href="{% static 'CSS/other/about.css' %}">
 
-</head>
+{% endblock %}
 
-<body>
-{% include "components/nav.html" %}
+{% block content %}
+
   <section class="about-us-body">
     <div class="about-section">
       <h1>" Buying book is not an expense,<br> but an investment to self development "</h1>
@@ -95,6 +94,5 @@
       </div>
     </div>
   </div>
-</body>
 
-</html>
+ {% endblock %}

@@ -1,18 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Document</title>
+{% extends "template.html" %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/commonforall.css' %}?" %}>
+{%  load static %}
+
+{% block style-links %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/registeration_page.css' %}?" %}>
-</head>
-<body>
-{% include "components/nav.html" %}
+
+{% endblock %}
+
+{% block content %}
+
     <div class="reg-form-container">
         <div class="reg-form">
             <div class="reg-form-head text-center">
@@ -74,20 +71,21 @@
                 </div>
                 
             </form>
-
-                <script>
-                    function input_field_focus(n){
-                        document.getElementById(n).classList.add("input-field-focused")
-                    }
-                    function input_field_focusout(n,m){
-                        var inp_value = document.getElementById(m).value;
-                        if(inp_value == ""){
-                            document.getElementById(n).classList.remove("input-field-focused")
-                        }
-                    }
-                
-                </script>
         </div>
     </div>
-</body>
-</html>
+    
+{% block script %}
+            <script>
+                function input_field_focus(n){
+                    document.getElementById(n).classList.add("input-field-focused")
+                }
+                function input_field_focusout(n,m){
+                    var inp_value = document.getElementById(m).value;
+                    if(inp_value == ""){
+                        document.getElementById(n).classList.remove("input-field-focused")
+                    }
+                }
+            
+            </script>
+{% endblock %}
+{% endblock %}

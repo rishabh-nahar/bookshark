@@ -1,17 +1,16 @@
-{% load static %}
+{% extends "template.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+{%  load static %}
+
+{% block style-links %}
+
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/listbook.css' %}?" %}>
-</head>
-<body>
-    {% include "components/nav.html"%}
+
+    
+{% endblock %}
+
+{% block content %}
+
     <div class="list-book-form-wrapper">
         <div class="list-book-form-div ">
             <h2 class="text-center">List Your Book here </h2><br>
@@ -97,7 +96,7 @@
                     
             </form>
 
-           
+{% block script %}
             <script>
                 // var loadFile = function(event) {
                 //     for (let i = 1; i < event.target.files.length; i++) {
@@ -150,5 +149,6 @@
 
         </div>
     </div>
-</body>
-</html>
+
+{% endblock %}
+{% endblock %}

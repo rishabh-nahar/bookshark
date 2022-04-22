@@ -1,20 +1,19 @@
-{% load static %}   
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Card/Page</title>
-    <link rel="stylesheet" href="{% static 'CSS/common.css' %}">
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
+
     <link rel="stylesheet" href="{% static 'CSS/pages/Product.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-  </head>
-  <body>
+
+
+{% endblock %}
+
+{% block content %}
     
-    {% include "components/nav.html" %}
     <div class="body-position">
       <div class = "card-wrapper">
+        
         <div class = "card">
           <!-- card left -->
           <div class = "product-imgs">
@@ -98,16 +97,18 @@
       </div>
 
     </div>
-    <script>
-      var window_loc = document.location;
-      var social_links = document.getElementsByClassName("social-links-anchor");
+    {% block scripts %}
+      <script>
+        var window_loc = document.location;
+        var social_links = document.getElementsByClassName("social-links-anchor");
 
-      for (var i = 0; i < social_links.length; i++) {
-        prev_href = social_links[i].href
-        social_links[i].href = prev_href + window_loc;
-        // console.log(social_links[i].href+"<br>");
-      }
-    </script>
-    <script src="{% static 'javascript/product.js' %}"></script>
-  </body>
-</html>
+        for (var i = 0; i < social_links.length; i++) {
+          prev_href = social_links[i].href
+          social_links[i].href = prev_href + window_loc;
+        }
+      </script>
+      <script src="{% static 'javascript/product.js' %}"></script>
+
+    {% endblock %}
+
+  {% endblock %}

@@ -135,7 +135,7 @@ nav{
     position:fixed;
     padding: var(--body-start-position) 0;
     transition: transform 0.3s ease;
-    width: 20vw;
+    width: var(--side-nav-width);
     box-shadow: 10px 10px 70px -4px rgba(224,224,224,0.51);
     z-index: 4;
     background-color:var(--theme-light-1);
@@ -156,6 +156,10 @@ nav{
     font-family: var(--font-2);
 }
 
+.nav-link-div{
+    display:flex;
+    align-items:center;
+}
 @media (max-width: 1086px){
     .navbar-wrapper{
         grid-template-columns: 50vw auto;
@@ -185,7 +189,7 @@ nav{
         transform: translateX(calc(92vw - 5vw))
     }
     .hidden-nav-container {
-        width:100vw;
+        width:var(--side-nav-width);
     }
     .hidden-nav {
         width: 100vw;

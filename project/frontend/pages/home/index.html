@@ -1,25 +1,17 @@
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}?" %}>
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/index.css' %}?" %}>
-</head> 
+{% endblock %}
 
-<body>
-
-    {% include 'components/nav.html'%}
+{% block content %}
 
     <div class="home-body-container">
             <br>
             
             <div class="search-results">
-        
-
         
         
                 {% for book in book_data %}
@@ -28,6 +20,7 @@
                 <div class="result-card">
                     <a href="/product/{{book.pk}}" class="result-card-anchor">
                         <div class="book-image-div image-container">
+    
                             {% for image in book_images %}
                                 {% if image.book_uid.pk == book.pk  %}
                                     <img class="book-image" src="/books/{{image.path}}" alt="{{book.book_name}}" />
@@ -38,17 +31,17 @@
                             <div class="book-name"><b>{{book.book_name}}</b></div>
                             <div class="book-description">{{ book.book_description }}</div>
                             <div class="book-prices">
-                                <div class="book-Mrp"> <strike><b>&#8377;{{book.book_mrp}}</b> </strike></div>
+                                <div class="book-Mrp"> <strike><b>&#8377;{{book.book_mrp}}</b> </strike>&nbsp;&nbsp;</div> 
                                 <div class="book-price"> <b>&#8377;{{book.book_selling_price}}</b> </div>
                             </div>
                         </div>
                 </a>
                     <div class="book-result-card-button-container">
                         <div>
-                            <button class="add-to-cart-button simple-bttn-3"> <i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                            <button class="add-to-cart-button simple-bttn-1"> <i class="fa fa-window-restore"></i> &nbsp; Compare</button>
                         </div>
                         <div>
-                            <button class="buy-now-button simple-bttn-4"> <i class="fa fa-"></i>Buy Now</button>
+                            <button class="buy-now-button simple-bttn-1"> <i class="fa fa-"></i><a href="/razorpay" ><i class="fa fa-shopping-cart"></i> &nbsp; Buy Now</a></button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +51,6 @@
         
             </div>
     </div>
+ 
    
-
-</body>
-</html>
+ {% endblock %}
