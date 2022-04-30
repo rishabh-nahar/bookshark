@@ -4,6 +4,7 @@
 
 {% block style-links %}
 
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}" />  
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/registeration_page.css' %}?" %}>
 
 {% endblock %}
@@ -35,6 +36,12 @@
                         <input type="radio" name="gender" id="" value="Male" required />Male &nbsp;
                         <input type="radio" name="gender" id="" value="Female" required />Female &nbsp;
                     </div>
+
+                    <div class="input-field">
+                        <input type="number" name="pincode" onfocusout="input_field_focusout('pincode_label','pincode_input')" onfocus="input_field_focus('pincode_label')" id="pincode_input" required />
+                        <label for="name" class="input-field-label" id="pincode_label">Your area Pincode:<span class="imp-field">*</span></label>
+                    </div>
+
                 </div>
 
                 <div class="input-field-grid-2">
