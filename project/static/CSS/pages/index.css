@@ -71,12 +71,7 @@
     font-weight: bold;
     color:green;
 }
-.book-result-card-button-container{
-    display:flex;
-    justify-content: space-around;
-    width:100%;
-    padding:1vh 0vw;
-}
+    
 .add-to-cart-button , .buy-now-button{
     padding:1vh 1vw;
     width:10vw;
