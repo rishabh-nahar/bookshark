@@ -37,18 +37,9 @@
                                 </div>
                             </div>
                     </a>
-                        <div class="book-result-card-button-container">
+                        <div class="">
                             <div>
-                                <button class="add-to-cart-button simple-bttn-1"> <i class="fa fa-window-restore"></i> &nbsp; Compare</button>
-                            </div>
-                            <div>
-                                <form method="post" >
-                                        {% csrf_token %}
-                                    <input type="hidden" value="{{book.book_selling_price}}" />
-                                    <button class="buy-now-button simple-bttn-1" id="bttn_{{book.pk}}"> 
-                                        <i class="fa fa-"></i><i class="fa fa-shopping-cart"></i> &nbsp; Buy Now
-                                    </button> 
-                                </form>
+                                <a href="/product/{{book.pk}}"><button class="simple-bttn simple-bttn-2">View Book</button></a>
                             </div>
                         </div>
                     </div>

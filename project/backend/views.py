@@ -20,6 +20,8 @@ def home(request):
 
 
     user_id = request.session.get("user_unique_id")
+    user  = user_details.objects.get(pk = user_id)
+    print(user.address_pincode)
     show_books = book_images.objects.all()
     book_data = listing_books.objects.filter(buyer_id__isnull = True).exclude(book_seller_id = user_id)
 
@@ -121,7 +123,7 @@ def paymenthandler(request,amount,productid):
 			if result is not None:
 
 				try:
-					# capture the payemt
+					# capture the payment
 					razorpay_client.payment.capture(payment_id, int(amount-123456789))
 					print(productid)
 					user_id = user_details.objects.get(pk = request.session.get("user_unique_id"))
@@ -150,6 +152,19 @@ def paymenthandler(request,amount,productid):
 		return HttpResponseBadRequest()
 
 
+def ordered(request):
+
+    user_id = request.session.get("user_unique_id")
+    print(user_id)
+    
+    book_data = listing_books.objects.filter(buyer_id__exact=user_id)
+    print(book_data[0].book_name)
+    book_image = book_images.objects.filter(book_uid = book_data)
+    
+    context = {'book_data':book_data,'book_images':book_image ,"user_id":user_id}
+    return render(request,'pages/product/ordered.html',context)
+
+
 
 
 def profile(request):
@@ -164,6 +179,7 @@ def profile(request):
         'user_id': user_id
         }
     return render(request,'pages/profile/ProfilePage.html',context)
+
 def sell(request):
     user_id = request.session.get("user_unique_id")
     if request.method == 'POST':
@@ -312,6 +328,8 @@ def about(request):
     user_id = request.session.get("user_unique_id")
     context = {'user_id': user_id}
     return render(request,"other/about/about.html",context)
+
+
 
 def logout(request):
     request.session.flush()
