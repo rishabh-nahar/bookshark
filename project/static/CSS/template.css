@@ -1,0 +1,7 @@
+#sidebar{
+    z-index: 10;
+}
+.main-content{
+    height: 100vh;
+    background-color:red;
+}

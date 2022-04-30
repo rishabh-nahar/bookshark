@@ -17,6 +17,6 @@ urlpatterns = [
     path('about', views.about,name="about"),
     
     path('razorpay/', new_view.homepage, name='razorpay'), 
-    path('razorpay/paymenthandler/', new_view.paymenthandler, name='paymenthandler'),
+    path('product/<int:productid>/paymenthandler/<int:amount>', views.paymenthandler, name='paymenthandler'),
 
 ]

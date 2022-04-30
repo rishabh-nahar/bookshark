@@ -86,7 +86,10 @@
 .buy-now-button a{
     color: var(--white);
 }
-
+.no-books-to-display{
+    height:80vh;
+    width: 96vw;
+}
 @media screen and (max-width: 1024px){
     .search-results{
         grid-template-columns: 45vw auto;

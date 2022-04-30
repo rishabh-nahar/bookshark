@@ -6,22 +6,151 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from django.core.files.storage import FileSystemStorage
 import random
+from django.conf import settings
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseBadRequest,HttpResponse
+
+# authorize razorpay client with API Keys.
+razorpay_client = razorpay.Client(
+	auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+
 
 def home(request):
-    show_books = book_images.objects.all()
-    book_data = listing_books.objects.all()
-    user_id = request.session.get("user_unique_id")
 
-    context = {'book_data':book_data,'book_images':show_books,"user_id":user_id}
+
+    user_id = request.session.get("user_unique_id")
+    show_books = book_images.objects.all()
+    book_data = listing_books.objects.filter(buyer_id__isnull = True).exclude(book_seller_id = user_id)
+
+
+    currency = 'INR'
+    amount = 20000
+
+    context = {}
+    
+	# Create a Razorpay Order
+    razorpay_order = razorpay_client.order.create(dict(amount=amount,
+                                                    currency=currency,
+                                                    payment_capture='0'))
+
+    # order id of newly created order.
+    razorpay_order_id = razorpay_order['id']
+    callback_url = 'paymenthandler/'
+
+    # def Merge(dict1, dict2):
+    #     res = {**dict1, **dict2}
+    #     return res
+    # we need to pass these details to frontend.
+    # context1 = {'book_data':book_data,'book_images':show_books,"user_id":user_id}
+
+    
+    context['book_images'] = show_books
+    context['user_id'] = user_id
+
+    search_query = request.GET.get('search_query')
+    search_category = request.POST.get("search_category")
+
+    if search_query != None:
+        
+        book_data = listing_books.objects.filter(book_name__icontains = search_query)
+
+
+    context['book_data'] = book_data
 
     return render(request,'pages/home/index.html',context)
+
+
+
 
 def product(request,productid): 
     book_data = get_object_or_404(listing_books,pk=productid)
     book_image = book_images.objects.filter(book_uid = book_data)
     user_id = request.session.get("user_unique_id")
+
+    
+
     context = {'book_data':book_data,'book_images':book_image ,"user_id":user_id}
+    
+    currency = 'INR'
+
+    if request.method == "POST":
+        # Create a Razorpay Order   
+        amount = request.POST.get("amount")
+        amount = int(amount) * 100
+        razorpay_order = razorpay_client.order.create(dict(amount=amount,
+                                                        currency=currency,
+                                                        payment_capture='0'))
+        razorpay_order_id = razorpay_order['id']
+        callback_url = str(productid)+ '/paymenthandler/'+ str(amount+123456789)
+
+        context['razorpay_order_id'] = razorpay_order_id
+        context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+        context['razorpay_amount'] = amount
+        context['currency'] = currency
+        context['callback_url'] = callback_url
+
+
+
     return render(request,'pages/product/Product.html',context)
+
+
+
+@csrf_exempt
+def paymenthandler(request,amount,productid):
+
+	# only accept POST request.
+	if request.method == "POST":
+		try:
+		
+			# get the required parameters from post request.
+			payment_id = request.POST.get('razorpay_payment_id', '')
+			razorpay_order_id = request.POST.get('razorpay_order_id', '')
+			signature = request.POST.get('razorpay_signature', '')
+			params_dict = {
+				'razorpay_order_id': razorpay_order_id,
+				'razorpay_payment_id': payment_id,
+				'razorpay_signature': signature
+			}
+
+			# verify the payment signature.
+			result = razorpay_client.utility.verify_payment_signature(
+				params_dict)
+            
+
+			if result is not None:
+
+				try:
+					# capture the payemt
+					razorpay_client.payment.capture(payment_id, int(amount-123456789))
+					print(productid)
+					user_id = user_details.objects.get(pk = request.session.get("user_unique_id"))
+					print(user_id)
+					buyer_update = listing_books.objects.get(pk = productid)
+					buyer_update.buyer_id =  user_id
+					buyer_update.save()
+                    
+                        
+					# render success page on successful caputre of payment
+					return redirect(home)
+				except:
+
+					# if there is an error while capturing payment.
+					return HttpResponse("fail")
+			else:
+
+				# if signature verification fails.
+				return HttpResponse("failure")
+		except:
+
+			# if we don't find the required parameters in POST data
+			return HttpResponseBadRequest()
+	else:
+	# if other than POST request is made.
+		return HttpResponseBadRequest()
+
+
+
 
 def profile(request):
     user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
@@ -104,6 +233,7 @@ def registeration_page(request):
     if request.method == "POST":
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
+        pincode = request.POST['pincode'] 
         gender = request.POST['gender'] 
         mail = request.POST['mail'] 
         phone = request.POST['phone'] 
@@ -130,6 +260,7 @@ def registeration_page(request):
                 phone = phone,
                 username = username,
                 password = password,
+                address_pincode = pincode,
                 )
             users.save()
 
@@ -180,7 +311,7 @@ def otp_page(request):
 def about(request):
     user_id = request.session.get("user_unique_id")
     context = {'user_id': user_id}
-    return render(request,"other/about/about.html",user_id)
+    return render(request,"other/about/about.html",context)
 
 def logout(request):
     request.session.flush()

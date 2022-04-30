@@ -71,9 +71,43 @@
             </div>
 
             <div class = "purchase-info">
-              <button type = "button" class = "btn">
-                Buy
-              </button>
+
+              <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="amount" value="{{book_data.book_selling_price}}">
+                <button id="paybtn" type = "submit" class = "btn">
+                  Buy
+                </button>
+
+              </form>
+
+              <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+              <script>
+                var options = {
+                
+                // Enter the Key ID generated from the Dashboard
+                key: "{{ razorpay_merchant_key }}",
+                
+                amount: "{{ razorpay_amount }}",
+                currency: "{{ currency }}",
+                
+                // Your/store name.
+                name: "Bookshark",
+                prefill:{'contact':9987990097,'email':'rishabhpnahar@gmail.com'},
+                // Pass the `id` obtained in the response of Step 1
+                order_id: "{{ razorpay_order_id }}",
+                callback_url: "{{ callback_url }}",
+                };
+                
+                // initialise razorpay with the options.
+                var rzp1 = new Razorpay(options);
+                
+                // add event listener to the payment button.
+                document.getElementById("paybtn").onclick = function (e) {
+                rzp1.open();
+                e.preventDefault();
+                };
+              </script>
               <button type = "button" class = "btn">Compare</button>
             </div>
 

@@ -82,7 +82,9 @@ a{
     text-decoration: none;
     color: black;
 }
-
+.color_white{
+    color: white !important;
+}
 button {
     border: none;
     background: transparent;

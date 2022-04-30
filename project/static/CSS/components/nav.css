@@ -30,7 +30,7 @@ nav{
     grid-area:col1;
 }
 .nav-col-2{
-    gap: 1vw;
+    gap: 0.5vw;
     align-items: center;
     justify-content: center;
     grid-area:col2;

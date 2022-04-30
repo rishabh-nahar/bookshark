@@ -15,40 +15,41 @@
                     </div>
             </div>
             <div class="nav-col-2 disp-flex search-box-wrapper">
-                <div class="book-category">
-                    <select class="book-category-select" name="book_category" id="">
-                        <option value="All">All</option>
-                        <option value="Educational">Educational</option>
-                        <option value="Action and Adventure">Action and Adventure</option>
-                        <option value="Classics">Classics</option>
-                        <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
-                        <option value="Detective and Mystery">Detective and Mystery</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Historical Fiction">Historical Fiction</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Literary Fiction">Literary Fiction</option>
-                        <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
-                        <option value="Short Stories">Short Stories</option>
-                        <option value="Suspense and Thrillers">Suspense and Thrillers</option>
-                        <option value="Women's Fiction">Women's Fiction</option>
-                        <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
-                        <option value="Cookbooks">Cookbooks</option>
-                        <option value="Essays">Essays</option>
-                        <option value="History">History</option>
-                        <option value="Memoir">Memoir</option>
-                        <option value="Self-Help">Self-Help</option>
-                        <option value="True Crime">True Crime</option>
-                    </select>
-                </div>
-                
-                <div class="search-box-container disp-flex">
-                    <div class="">
-                        <input type="text" value="" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
+
+                    <div class="book-category" name="search_category">
+                        <select class="book-category-select" name="book_category" id="">
+                            <option value="All">All</option>
+                            <option value="Educational">Educational</option>
+                            <option value="Action and Adventure">Action and Adventure</option>
+                            <option value="Classics">Classics</option>
+                            <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
+                            <option value="Detective and Mystery">Detective and Mystery</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Historical Fiction">Historical Fiction</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Literary Fiction">Literary Fiction</option>
+                            <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
+                            <option value="Short Stories">Short Stories</option>
+                            <option value="Suspense and Thrillers">Suspense and Thrillers</option>
+                            <option value="Women's Fiction">Women's Fiction</option>
+                            <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
+                            <option value="Cookbooks">Cookbooks</option>
+                            <option value="Essays">Essays</option>
+                            <option value="History">History</option>
+                            <option value="Memoir">Memoir</option>
+                            <option value="Self-Help">Self-Help</option>
+                            <option value="True Crime">True Crime</option>
+                        </select>
                     </div>
-                    <div class="search-button">
-                        <i class="fa fa-search"></i>
+                    
+                    <div class="search-box-container disp-flex">
+                        <div class="">
+                            <input type="text" oninput="on_search_q()" class="search_q_input" value="" name="search_query" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
+                        </div> 
+                        <div class="search-button"> 
+                            <a href="{% url 'home' %}" id="search_achor_link"><button class="color_white" type="submit"><i class="fa fa-search"></i></button></a>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class=" disp-flex nav-col-3 user-credentials">
                 {% if user_id %}
@@ -83,14 +84,5 @@
                 {% endif %}
             </div>
         </div>
-        <script>
-            function show_navbar(){
-                document.getElementById('hidden_nav').classList.toggle('hide-nav-container');
-                document.getElementById('hamburger_container').classList.toggle('hamburger-container');
-                document.getElementById('logo').classList.toggle('logo-on-ham-clicked');
-                document.getElementById('line1').classList.toggle('line1');
-                document.getElementById('line2').classList.toggle('line2');
-                document.getElementById('line3').classList.toggle('line3');
-            }
-        </script>
+        <script src="{% static 'Javascript/nav.js' %}"></script>
     </div>

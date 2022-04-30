@@ -49,6 +49,9 @@ class user_details(AbstractBaseUser):
     username = models.CharField(max_length=30,null=False,unique=True,default=None)
     password = models.CharField(max_length=1000,null=False)
 
+
+    address_pincode = models.BigIntegerField(null = False,default=None)
+    
     is_active = models.BooleanField(default = False,null=False)
     is_admin = models.BooleanField(default = False,null=False)
     is_faculty = models.BooleanField(default = False,null=False)
@@ -73,17 +76,6 @@ class user_details(AbstractBaseUser):
         db_table = "users"
 
 
-class file_upload(models.Model):
-    file_type = models.CharField(max_length=6,null=False,default=None)
-    file_name = models.CharField(max_length=50,null = False,default=None)
-    file_url = models.CharField(max_length=200,default=None)
-    category = models.CharField(max_length=40,default=None)
-    is_appropriate = models.BooleanField(default=False)
-
-    user_id = models.ForeignKey(user_details,on_delete=models.CASCADE,default=None,verbose_name='user_unique_id')
-    class Meta:
-        db_table = "file_details"
-
 class listing_books(models.Model):
     book_name = models.CharField(max_length=70,null=False,default=None)
     book_category = models.CharField(max_length=40,null=False,default=None)
@@ -93,7 +85,8 @@ class listing_books(models.Model):
     book_selling_price = models.IntegerField(null=False,default=None)
     book_mrp = models.IntegerField(null=False,default=None)
     book_description = models.CharField(max_length=1000,null=False,default=None)
-    book_seller = models.ForeignKey(user_details,on_delete=models.CASCADE,default=None,verbose_name='book_seller_id')
+    book_seller = models.ForeignKey(user_details , on_delete=models.CASCADE,default=None,verbose_name='book_seller_id')
+    buyer_id = models.ForeignKey(user_details,on_delete=models.CASCADE,null=True,related_name="buyer_id_listing_books",default=None,verbose_name='buyer_id')
     class Meta:
         db_table = "book_details"
 
