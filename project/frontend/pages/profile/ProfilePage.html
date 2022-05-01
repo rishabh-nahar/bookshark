@@ -28,13 +28,13 @@
             <div class="menus">
                 
                 <div class="menuItem bdr-btm bdr-top">
-                    <a href="#">
+                    <a href="/posted_books">
                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M8 16h12V4H8v12zm2-10h8v2h-8V6zm0 3h8v2h-8V9zm0 3h4v2h-4v-2z" opacity=".3"/><path fill="currentColor" d="M4 22h14v-2H4V6H2v14c0 1.1.9 2 2 2zM6 4v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zm14 12H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z"/></svg>
                             My postedBooks
                         </a>
                 </div>
                 <div class="menuItem bdr-btm ">
-                    <a href="#">
+                    <a href="/my_orders">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607l1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4a2 2 0 0 0 0-4h7a2 2 0 1 0 0 4a2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0a1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0zm-1.646-7.646l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/></svg>
                         My Orders
                     </a>
@@ -52,7 +52,7 @@
                     </a>
                 </div>
                 <div class="menuItem bdr-btm">
-                    <a href="#">
+                    <a href="/logout">
                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H6zm10.293 5.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L18.586 13H10a1 1 0 1 1 0-2h8.586l-2.293-2.293a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
                         Log Out
                     </a>
@@ -60,64 +60,14 @@
                 
             </div>
         </div>
-        <div class="main-container">
-            
-            <div class="postedBooks">
-                <h3>Book Posted by you.</h3>
+
+            <div class="main-container">
+                {% block profile-content %}
+
+                {% endblock profile-content %}
             </div>
-           
-            <div class="postedbook-list">
-            {% if book_details.count == 0  %}
-            <br/>
-            <div class = "card-no-books">
-                No Books listed
-            </div>
-            {% endif %}
-                {% for books in book_details %}
 
-                <div class="book">
-                    <div class="bookImgContent">
-                        <div class="book-img">
-                            {% for book_image in book_images %}
-                                {% if book_image.book_uid.pk == books.pk  %}
-                                    <img src="books/{{book_image.path}}" alt="Boook Image uploaded by seller">
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div> 
-
-                    <div class="bookDesc">
-                        <div class="book-title">
-                            <h2>{{books.book_name}}</h2>
-                        </div>
-                        <div class="book-desc">{{books.book_description}}</div>
-                        <div class="book-author">
-                            <div class="authorname">
-                                Author-<a>{{ books.book_author }}</a><br>
-                                publisher-<a>{{ books.book_publisher }}</a>
-                            </div>
-                        </div>
-                
-                        <div class="pricetag">
-                            <h3 class="price">&#8377;{{books.book_mrp}}</h3>
-                            <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
-                        </div>
-                        <div class="bookbtns">
-                            <div class="">
-                                <a href=""><button class="col-white simple-bttn simple-bttn-1">View Book</button></a>
-                            </div> 
-                            <div class="">
-                                <a href=""><button class=" simple-bttn simple-bttn-2 col-white">Edit</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% endfor %}
-
-                    
-            </div>
         </div>
     </div>
 
-{% endblock %}
+{% endblock content %}

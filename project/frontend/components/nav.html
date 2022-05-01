@@ -14,9 +14,10 @@
                         <h1>Bookshark</h1>
                     </div>
             </div>
-            <div class="nav-col-2 disp-flex search-box-wrapper">
+            <form>
+                <div class="nav-col-2 disp-flex search-box-wrapper">
 
-                    <div class="book-category" name="search_category">
+                    <div class="book-category" onchange="on_search_q()" name="search_category">
                         <select class="book-category-select" name="book_category" id="">
                             <option value="All">All</option>
                             <option value="Educational">Educational</option>
@@ -42,17 +43,21 @@
                         </select>
                     </div>
                     
-                    <div class="search-box-container disp-flex">
-                        <div class="">
-                            <input type="text" oninput="on_search_q()" class="search_q_input" value="" name="search_query" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
-                        </div> 
-                        <div class="search-button"> 
-                            <a href="{% url 'home' %}" id="search_achor_link"><button class="color_white" type="submit"><i class="fa fa-search"></i></button></a>
+                        <div class="search-box-container disp-flex">
+                            <div class="">
+                                <input type="text" oninput="on_search_q()" class="search_q_input" value="{{search_query}}" name="search_query" placeholder="Search Book name, Author, Publisher..." autocomplete="off">
+                            </div> 
+                            <div class="search-button"> 
+                                <a href="{% url 'home' %}" id="search_achor_link"><button class="color_white" type="submit"><i class="fa fa-search"></i></button></a>
+                            </div>
                         </div>
+                        
                     </div>
-            </div>
+            </form>
             <div class=" disp-flex nav-col-3 user-credentials">
-                {% if user_id %}
+                {% if user_id is not None %}
+                    <a href="/" ><i class="fa fa-home" ></i></a>
+                    &nbsp;
                     <a href="/profile" ><i class="fa fa-user" ></i></a>
                     &nbsp;
                     <a href="/logout"><i class="fa fa-sign-out"></i></a>

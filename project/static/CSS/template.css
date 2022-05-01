@@ -1,7 +1,7 @@
 #sidebar{
     z-index: 10;
 }
-.main-content{
-    height: 100vh;
-    background-color:red;
+.main-body-container{
+    padding:var(--body-start-position) 0;
+    min-height: 90vh;
 }

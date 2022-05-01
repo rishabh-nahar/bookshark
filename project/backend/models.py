@@ -51,6 +51,11 @@ class user_details(AbstractBaseUser):
 
 
     address_pincode = models.BigIntegerField(null = False,default=None)
+    address_line_1 = models.CharField(max_length=1024,null=False,default=None)
+    address_line_2 = models.CharField(max_length=1024,null=True,default=None)
+    block = models.CharField(max_length=200,null=False,default=None)
+    district = models.CharField(max_length=200,null=False,default=None)
+    state = models.CharField(max_length=200,null=False,default=None)
     
     is_active = models.BooleanField(default = False,null=False)
     is_admin = models.BooleanField(default = False,null=False)

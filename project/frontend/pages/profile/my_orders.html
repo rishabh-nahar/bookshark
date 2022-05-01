@@ -1,0 +1,62 @@
+{% extends "pages/profile/posted_books.html" %}
+
+
+{% block profile-content  %}
+    
+
+<div class="postedBooks">
+    <h3>Book Ordered by you.</h3>
+</div>
+
+<div class="postedbook-list">
+{% if book_details.count == 0  %}
+<br/>
+<div class = "card-no-books">
+    Nothing to show !
+</div>
+{% endif %}
+    {% for books in book_details %}
+
+    <div class="book">
+        <div class="bookImgContent">
+            <div class="book-img">
+                {% for book_img in book_images %}
+                    {% if book_img.book_uid.pk == books.pk  %}
+                        <img src="books/{{book_img.path}}" alt="Boook Image uploaded by seller">
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div> 
+
+        <div class="bookDesc">
+            <div class="book-title">
+                <h2>{{books.book_name}}</h2>
+            </div>
+            <div class="book-desc color_grey">{{books.book_description}}</div>
+            <div class="book-author">
+                <div class="authorname">
+                    Author-<a class="color_grey">{{ books.book_author }}</a><br>
+                    publisher-<a class="color_grey">{{ books.book_publisher }}</a>
+                </div>
+            </div>
+    
+            <div class="pricetag">
+                <h3 class="price">&#8377;{{books.book_mrp}}</h3>
+                <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
+            </div>
+            <div class="bookbtns">
+                <div class="">
+                    <a href="product/{{books.pk}}"><button class="col-white simple-bttn simple-bttn-1">View Book</button></a>
+                </div> 
+                <div class="">
+                    <a href=""><button class=" simple-bttn simple-bttn-2 col-white">Details</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+{% endblock profile-content %}

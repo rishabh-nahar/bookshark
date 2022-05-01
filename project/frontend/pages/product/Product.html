@@ -72,7 +72,8 @@
 
             <div class = "purchase-info">
 
-              <form action="" method="post">
+              {% if user_id != None and user_id != book_data.book_seller_id and book_data.buyer_id == None %}
+              <form onload="preventDefault()" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="amount" value="{{book_data.book_selling_price}}">
                 <button id="paybtn" type = "submit" class = "btn">
@@ -80,6 +81,7 @@
                 </button>
 
               </form>
+              {% endif %}
 
               <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
               <script>
@@ -108,7 +110,7 @@
                 e.preventDefault();
                 };
               </script>
-              <button type = "button" class = "btn">Compare</button>
+              <button type = "button" onclick="alert('Coming Soon')" class = "btn">Compare</button>
             </div>
 
             <div class = "social-links">

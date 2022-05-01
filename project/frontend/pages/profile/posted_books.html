@@ -1,0 +1,124 @@
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/ProfilePage.css' %}?" %}>
+
+{% endblock style-links %}
+
+{% block content %}
+
+    <div class="page">
+        <div class="profile-container" >
+
+            
+            <div class="photo-container">
+                <img src="{% static 'media/images/for_dev_mode/profile.png' %}" alt="Profilephto here">
+            </div>
+            
+            <div class="seller-container">
+                <div class="sellername">
+                        Hello, {{user_detail.first_name}} {{user_detail.last_name}}
+                </div>
+            </div>
+            <div class="menus">
+                
+                <div class="menuItem bdr-btm bdr-top">
+                    <a href="/profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M8 16h12V4H8v12zm2-10h8v2h-8V6zm0 3h8v2h-8V9zm0 3h4v2h-4v-2z" opacity=".3"/><path fill="currentColor" d="M4 22h14v-2H4V6H2v14c0 1.1.9 2 2 2zM6 4v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2zm14 12H8V4h12v12zM10 9h8v2h-8zm0 3h4v2h-4zm0-6h8v2h-8z"/></svg>
+                            My postedBooks
+                        </a>
+                </div>
+                <div class="menuItem bdr-btm ">
+                    <a href="/my_orders">
+                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607l1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4a2 2 0 0 0 0-4h7a2 2 0 1 0 0 4a2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0a1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0a1 1 0 0 1 2 0zm-1.646-7.646l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/></svg>
+                        My Orders
+                    </a>
+                </div>
+                <div class="menuItem bdr-btm">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2ZM5 18h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71L16.66 2.6A2 2 0 0 0 14 2.53l-9 9a2 2 0 0 0-.57 1.21L4 16.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 18ZM15.27 4L18 6.73l-2 1.95L13.32 6Zm-8.9 8.91L12 7.32l2.7 2.7l-5.6 5.6l-3 .28Z"/></svg>
+                        Edit Profile
+                    </a>
+                </div>
+                <div class="menuItem bdr-btm">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path fill="currentColor" d="M10 1.199a8.801 8.801 0 1 0 .002 17.602A8.801 8.801 0 0 0 10 1.199zm3.538 9.139a26.815 26.815 0 0 0-1.497-1.939a15.769 15.769 0 0 0-1.614-1.645c-.578-.504-1.208-.982-1.9-1.316a9.018 9.018 0 0 0-1.439-.536c-.056-.015-.208-.084-.252-.015c-.028.043-.006.123-.002.17l.039.308c.148 1.228.204 2.525-.178 3.719A3.9 3.9 0 0 1 5.62 10.77c-.413.379-1.002.76-1.587.732a1.141 1.141 0 0 1-.324-.059c-.626-.211-.663-.886-.667-1.443a6.992 6.992 0 0 1 .216-1.775a7.033 7.033 0 0 1 4.419-4.834A6.954 6.954 0 0 1 10 2.994a7.011 7.011 0 0 1 5.817 3.137c.32.488.577 1.016.766 1.566h-.003c.061.174.117.35.163.527c.146.58.22 1.178.216 1.775c-.008 1.125-.37 2.367-1.783 1.771c-.667-.282-1.224-.852-1.638-1.432z"/></svg>
+                        My Shark Coins
+                    </a>
+                </div>
+                <div class="menuItem bdr-btm">
+                    <a href="/logout">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M6 2a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3H6zm10.293 5.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L18.586 13H10a1 1 0 1 1 0-2h8.586l-2.293-2.293a1 1 0 0 1 0-1.414z" clip-rule="evenodd"/></svg>
+                        Log Out
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="main-container">
+
+            {% block profile-content %}
+
+            <div class="postedBooks">
+                <h3>Book Posted by you.</h3>
+            </div>
+           
+            <div class="postedbook-list">
+            {% if book_details.count == 0  %}
+            <br/>
+            <div class = "card-no-books">
+                No Books listed
+            </div>
+            {% endif %}
+                {% for books in book_details %}
+
+                <div class="book">
+                    <div class="bookImgContent">
+                        <div class="book-img">
+                            {% for book_image in book_images %}
+                                {% if book_image.book_uid.pk == books.pk  %}
+                                    <img src="books/{{book_image.path}}" alt="Boook Image uploaded by seller">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div> 
+
+                    <div class="bookDesc">
+                        <div class="book-title">
+                            <h2>{{books.book_name}}</h2>
+                        </div>
+                        <div class="book-desc color_grey">{{books.book_description}}</div>
+                        <div class="book-author">
+                            <div class="authorname">
+                                Author-<a class="color_grey">{{ books.book_author }}</a><br>
+                                publisher-<a class="color_grey">{{ books.book_publisher }}</a>
+                            </div>
+                        </div>
+                
+                        <div class="pricetag">
+                            <h3 class="price">&#8377;{{books.book_mrp}}</h3>
+                            <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
+                        </div>
+                        <div class="bookbtns">
+                            <div class="">
+                                <a href="product/{{books.pk}}"><button class="col-white simple-bttn simple-bttn-1">View Book</button></a>
+                            </div> 
+                            <div class="">
+                                <a href=""><button class=" simple-bttn simple-bttn-2 col-white">Edit</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                {% endblock profile-content %}
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

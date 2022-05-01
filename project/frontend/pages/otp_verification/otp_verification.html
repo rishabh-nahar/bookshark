@@ -1,70 +1,48 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+{% extends "template.html" %}
+
+{%  load static %}
+
+{% block style-links %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/otp_verify_page.css' %}?" %}>
+
+{% endblock style-links %}
+
+{% block content %}
+<div class="otp-form-wrapper">
+
+  <div class="otp-form-container">
+    <h2>Verify Your Email</h2><br>
+    <p class="color_grey">An OTP has been sent to your Email</p>
     <form method="post">
-        {% csrf_token %}
-        <input type="text" name="opt_input"/>
-        <input type="submit" />
-    </form>
-</body>
-</html>
-
-
-
-
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verify Account</title>
-    <link rel="stylesheet" href="{% static 'CSS/pages/otp_verify_page.css' %}" />
-
-  </head>
-  <body>
-      {% include 'components/nav.html' %}
-    <div class="container">
-      <h2>Verify Your Account</h2>
-      <p>We emailed you the six digit code to (mail id of the user) <br/> Enter the code below to confirm your email address.</p>
-            <div class="code-container">
-        {% if messages %}
-        {% for message in messages %}
-        <p>{{ message }}</p>
-        {% endfor %}
-        {% endif %}
-        <form method="post">
-            {% csrf_token %}
-        <form method="post"> 
-
-            <input type="number" class="code" placeholder="0" min="0" max="9" required>
-            <input type="number" class="code" placeholder="0" min="0" max="9" required>
-            <input type="number" class="code" placeholder="0" min="0" max="9" required>
-            <input type="number" class="code" placeholder="0" min="0" max="9" required>
-        </div>
-    </form>
-        <small class="info">
-        <div class="wrapper">
-          <button class="">
-            <span>Submit</span>
-            <div class="success">
-            <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  viewBox="0 0 29.756 29.756" style="enable-background:new 0 0 29.756 29.756;" xml:space="preserve">
-              
-            <path d="M29.049,5.009L28.19,4.151c-0.943-0.945-2.488-0.945-3.434,0L10.172,18.737l-5.175-5.173   c-0.943-0.944-2.489-0.944-3.432,0.001l-0.858,0.857c-0.943,0.944-0.943,2.489,0,3.433l7.744,7.752   c0.944,0.943,2.489,0.943,3.433,0L29.049,8.442C29.991,7.498,29.991,5.953,29.049,5.009z"/>
-         </svg>
-              </div>
-          </button>
-        </div>
-
+      {% csrf_token %}
+      <div class="imp-field">
+          <small>
+              {% for message in messages %}
+              {{message}}<br>
+              {% endfor %}
+          </small>
+      </div>
+      <br>
+      <br>
+      <div class="input-field">
+        <input type="text" autocomplete="off" name="otp_input" onfocusout="input_field_focusout('otp_input_label','otp_input_field')" onfocus="input_field_focus('otp_input_label')" id="otp_input_field" required />
+        <label for="name" class="input-field-label" id="otp_input_label">Enter OTP:<span class="imp-field">*</span></label>
     </div>
-    <script src="{% static 'javascript/otp_page.js' %}"></script>
-  </body>
-</html> {% endcomment %}
+      <input type="submit" class="simple-bttn simple-bttn-2" />
+      <input type="hidden" name="" value="{{request}}" id="">
+      <input type="hidden" name="" value="{{first_name}}" id="">
+      <input type="hidden" name="" value="{{username}}" id="">
+      <input type="hidden" name="" value="{{user_id}}" id="">
+      <input type="hidden" name="" value="{{mail_id}}" id="">
+      <br><br>
+      <a class="color_grey hover_col_black" href="" onclick="alert('OTP sent to your Email: {{mail_id}}')">Resend OTP</a>
+    </form>
+    <div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock content %}

@@ -6,7 +6,10 @@
 }
 .page{
     grid-gap: 5vw;
-    padding:var(--body-start-position) 5%;
+    padding: 0 5%;
+}
+.postedbook-list{
+    min-height: 70vh ;
 }
 .card-no-books{
     padding: 35vh 2vw;

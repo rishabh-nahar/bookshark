@@ -3,7 +3,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 .body-position{
-    padding: var(--body-start-position) 5vw;
+    /* padding: var(--body-start-position) 5vw; */
 
 }
 img{

@@ -10,6 +10,7 @@ from django.conf import settings
 import razorpay
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseBadRequest,HttpResponse
+from django.db.models import Q
 
 # authorize razorpay client with API Keys.
 razorpay_client = razorpay.Client(
@@ -17,48 +18,45 @@ razorpay_client = razorpay.Client(
 
 
 def home(request):
-
-
     user_id = request.session.get("user_unique_id")
-    user  = user_details.objects.get(pk = user_id)
-    print(user.address_pincode)
+    print("user_id-"+str(user_id))
+    user_pincode = None
+    if user_id is not None:
+        user  = user_details.objects.get(pk = user_id)
+        user_pincode = user.address_pincode
+
+    book_data = listing_books.objects.filter(
+        (Q(buyer_id__isnull = True)),
+        (Q(book_seller__address_pincode__exact = user_pincode))
+        ).exclude(book_seller_id = user_id)
+
     show_books = book_images.objects.all()
-    book_data = listing_books.objects.filter(buyer_id__isnull = True).exclude(book_seller_id = user_id)
 
-
-    currency = 'INR'
-    amount = 20000
-
-    context = {}
-    
-	# Create a Razorpay Order
-    razorpay_order = razorpay_client.order.create(dict(amount=amount,
-                                                    currency=currency,
-                                                    payment_capture='0'))
-
-    # order id of newly created order.
-    razorpay_order_id = razorpay_order['id']
-    callback_url = 'paymenthandler/'
-
-    # def Merge(dict1, dict2):
-    #     res = {**dict1, **dict2}
-    #     return res
-    # we need to pass these details to frontend.
-    # context1 = {'book_data':book_data,'book_images':show_books,"user_id":user_id}
-
-    
-    context['book_images'] = show_books
-    context['user_id'] = user_id
-
-    search_query = request.GET.get('search_query')
-    search_category = request.POST.get("search_category")
+    search_query = ""
+    if search_query is not None:
+        search_query = request.GET.get('search_query')
+        book_category = request.GET.get('book_category')
+        print(search_query)
+        if book_category == "All":
+            book_category = ""
+    else:
+        search_query = ""
+        print(search_query)
 
     if search_query != None:
-        
-        book_data = listing_books.objects.filter(book_name__icontains = search_query)
+        book_data = listing_books.objects.filter( 
+            (Q(book_category__icontains = book_category)),
+            ( Q(book_name__icontains = search_query)|Q(book_author__icontains = search_query)|Q(book_publisher__icontains = search_query) ),
+            (Q(buyer_id__isnull = True)),
+            (Q(book_seller__address_pincode__exact = user_pincode))
+            ).exclude(Q(book_seller_id = user_id))
 
 
+    context = {}
     context['book_data'] = book_data
+    context['book_images'] = show_books
+    context['search_query'] = search_query
+    context['user_id'] = user_id
 
     return render(request,'pages/home/index.html',context)
 
@@ -66,19 +64,20 @@ def home(request):
 
 
 def product(request,productid): 
+
+    user_id = request.session.get("user_unique_id")
     book_data = get_object_or_404(listing_books,pk=productid)
     book_image = book_images.objects.filter(book_uid = book_data)
-    user_id = request.session.get("user_unique_id")
 
     
 
     context = {'book_data':book_data,'book_images':book_image ,"user_id":user_id}
     
-    currency = 'INR'
 
     if request.method == "POST":
         # Create a Razorpay Order   
         amount = request.POST.get("amount")
+        currency = 'INR'
         amount = int(amount) * 100
         razorpay_order = razorpay_client.order.create(dict(amount=amount,
                                                         currency=currency,
@@ -92,6 +91,7 @@ def product(request,productid):
         context['currency'] = currency
         context['callback_url'] = callback_url
 
+        
 
 
     return render(request,'pages/product/Product.html',context)
@@ -134,7 +134,7 @@ def paymenthandler(request,amount,productid):
                     
                         
 					# render success page on successful caputre of payment
-					return redirect(home)
+					return redirect(my_orders)
 				except:
 
 					# if there is an error while capturing payment.
@@ -152,24 +152,12 @@ def paymenthandler(request,amount,productid):
 		return HttpResponseBadRequest()
 
 
-def ordered(request):
+def my_orders(request):
 
     user_id = request.session.get("user_unique_id")
-    print(user_id)
-    
-    book_data = listing_books.objects.filter(buyer_id__exact=user_id)
-    print(book_data[0].book_name)
-    book_image = book_images.objects.filter(book_uid = book_data)
-    
-    context = {'book_data':book_data,'book_images':book_image ,"user_id":user_id}
-    return render(request,'pages/product/ordered.html',context)
-
-
-
-
-def profile(request):
     user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
-    book_data = listing_books.objects.filter(book_seller_id = request.session.get('user_unique_id'))
+    book_data = listing_books.objects.filter(buyer_id = user_id)
+    print(book_data)
     show_books = book_images.objects.filter(book_uid_id__in	 = book_data)
     user_id = request.session.get("user_unique_id")
     context = {
@@ -178,7 +166,24 @@ def profile(request):
         'book_images':show_books,
         'user_id': user_id
         }
-    return render(request,'pages/profile/ProfilePage.html',context)
+
+    return render(request,'pages/profile/my_orders.html',context)
+
+
+
+
+def profile(request):
+    user_id = request.session.get("user_unique_id")
+    user_details_to_display = user_details.objects.filter(username = request.session.get("username")).first()
+    book_data = listing_books.objects.filter(book_seller_id = request.session.get('user_unique_id'))
+    show_books = book_images.objects.filter(book_uid_id__in	 = book_data)
+    context = {
+        'book_details':book_data,
+        'user_detail':user_details_to_display,
+        'book_images':show_books,
+        'user_id': user_id
+        }
+    return render(request,'pages/profile/posted_books.html',context)
 
 def sell(request):
     user_id = request.session.get("user_unique_id")
@@ -220,6 +225,7 @@ def sell(request):
                 book_uid = listing_books.objects.get(pk = list_book_details.pk)
                 )
             file_details.save()
+            return redirect(profile)
     context  = {'user_id': user_id}
     return render(request,'pages/sell/listbook.html',context)
 
@@ -227,19 +233,41 @@ def loginpage(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        
+        try:
 
-        validate_userid = user_details.objects.filter(username__exact = username)
+            validate_userid = user_details.objects.get( Q(username__exact = username))
+            user_password = validate_userid.password
+            print(user_password)
 
-        count_users = validate_userid.count()
-        for userids in validate_userid:
-            user_unique_id = userids.unique_id
-            if count_users >= 1:
-                request.session['username'] = username
-                request.session['user_unique_id'] = user_unique_id
-                if password == userids.password:
-                    return redirect("/",args={'username':username,'user_unique_id':user_unique_id})
+            user_unique_id = validate_userid.unique_id
+            print(user_unique_id)
+
+            first_name = validate_userid.first_name
+            print(first_name)
+
+            mail = validate_userid.mail
+            print(mail)
+
+            if user_password == password:
+                check_active = validate_userid.is_active
+                print("is_active status: "+ str(check_active))
+
+                if check_active == 1:
+                    request.session['username'] = username
+                    request.session['user_unique_id'] = user_unique_id
+                    return redirect(profile)
                 else:
-                    print("Wrong password")
+                    print(send_mail(request,first_name, username , user_unique_id,mail))
+                    return redirect(otp_page)
+            else:
+                messages.error(request,"Invalid password")
+                print("Invalid password")
+
+        except:
+            messages.error(request,"Invalid username or password")
+            print("Invalid username or password")
+
 
     return render(request,'pages/login/login.html')
 
@@ -249,7 +277,15 @@ def registeration_page(request):
     if request.method == "POST":
         first_name = request.POST['firstname']
         last_name = request.POST['lastname']
+
         pincode = request.POST['pincode'] 
+        block = request.POST['block'] 
+        address_line_1 = request.POST['address_line_1'] 
+        address_line_2 = request.POST['address_line_2']  
+        district = request.POST['District'] 
+        state = request.POST['state'] 
+
+
         gender = request.POST['gender'] 
         mail = request.POST['mail'] 
         phone = request.POST['phone'] 
@@ -277,11 +313,24 @@ def registeration_page(request):
                 username = username,
                 password = password,
                 address_pincode = pincode,
+                address_line_1 = address_line_1,
+                address_line_2 = address_line_2,
+                block = block,
+                district = district,
+                state = state,
                 )
             users.save()
 
             print("User Created")
-            # We will load the html content first
+            send_mail(request,first_name, username , users.pk,mail)
+
+            return redirect(otp_page)
+
+    return render(request,'pages/register/register.html')
+
+
+def send_mail(request,first_name,username,user_unique_id,mail_id):
+    # We will load the html content first
             random_num = random.randint(1000,9999)
 
             html_content = render_to_string("other/mail_templates/mail_temp.html", {'name': first_name ,'otp':random_num })
@@ -296,33 +345,61 @@ def registeration_page(request):
                 # from email
                 'findmynotes2002@gmail.com',
                 # receipient list
-                [mail]
+                [mail_id]
             )
 
             # attach the html content
             mail.attach_alternative(html_content, "text/html")
             mail.send()
-            request.session["new_user"] = username
-            request.session["new_user_id"] = users.unique_id
-            request.session["new_otp"] = random_num
-            return redirect(otp_page)
 
-    return render(request,'pages/register/register.html')
+            request.session["new_user"] = username
+            request.session["new_user_id"] = user_unique_id
+            request.session["new_otp"] = random_num
+            print("mail sent")
+
+            return "Mail Sent"
+
 
 def otp_page(request):
+    user = user_details.objects.get(username = request.session.get("new_user"))
+
+    request.session['username'] = request.session.get("new_user")
+    request.session['user_unique_id'] = request.session.get("new_user_id")
+
+    username = request.session['username']
+    user_unique_id = request.session['user_unique_id']
+    user = user_details.objects.get( Q(username__exact = username))
+    
+
+    first_name = user.first_name
+    print(first_name)
+
+    mail = user.mail
+    print(mail)
+
+    context = {
+            "first_name":first_name,
+            "username":username,
+            "user_id":user_unique_id,
+            "mail_id":mail,
+            "request":request
+        }
     if request.method == "POST":
-        input_otp = request.POST['opt_input']
+        
+        input_otp = request.POST['otp_input']
+    
+
+
         if input_otp == str(request.session.get('new_otp')):
-            set_active = user_details.objects.get(username = request.session.get("new_user"))
-            set_active.is_active = True
-            set_active.save()
+            user.is_active = True
+            user.save()
             messages.success(request,"valid OTP")
-            request.session['username'] = request.session.get("new_user")
-            request.session['user_unique_id'] = request.session.get("new_user_id")
+          
+
             return redirect(home)
         else:
             messages.error(request,"Invalid OTP")
-    return render(request,"pages/otp_verification/otp_verification.html")
+    return render(request,"pages/otp_verification/otp_verification.html",context)
 
 def about(request):
     user_id = request.session.get("user_unique_id")

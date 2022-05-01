@@ -12,10 +12,18 @@
 
     <div class="login-form-container">
     <div class="login-form">
-        <div class="text-center login-head" id="login">Login Here</div>
+        <div class="text-center login-head" id="login">
+            <h2>Login Here</h2>
+            <p class="imp-field">
+                <small>
+                    {% for message in messages %}
+                    {{message}}<br>
+                    {% endfor %}
+                </small>
+            </p>
+        </div>
         <form action="" method="post">
             {% csrf_token %}
-            <div class="input-field-grid-2">
                 <div class="input-field">
                     <input type="text" autocomplete="off" name="username" onfocusout="input_field_focusout('username_label','username_input')" onfocus="input_field_focus('username_label')" id="username_input" required />
                     <label for="name" class="input-field-label" id="username_label">Username:<span class="imp-field">*</span></label>
@@ -28,7 +36,6 @@
                 <div class="">
                     <Button class="simple-bttn simple-bttn-2" type="submit" name="submit">Login</Button>
                 </div>
-            </div>
         </form>
         <div class="forget-password-div grid-2">
             <a href="">Forget Password?</a>
@@ -36,18 +43,5 @@
         </div>
     </div>
 </div>
-{% block scripts %}
-<script>function input_field_focus(n){
-    document.getElementById(n).classList.add("input-field-focused")
-}
-function input_field_focusout(n,m){
-    var inp_value = document.getElementById(m).value;
-    if(inp_value == ""){
-        document.getElementById(n).classList.remove("input-field-focused")
-    }
-}
-
-</script>
-
-{% endblock %}
-{% endblock %}
+    <script src="{% static 'Javascript/input_style.js' %}"></script>
+    {% endblock %}

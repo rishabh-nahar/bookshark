@@ -4,17 +4,22 @@
 
 {% block style-links %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/common.css' %}" />  
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/registeration_page.css' %}?" %}>
 
-{% endblock %}
+{% endblock style-links %}
 
 {% block content %}
-
     <div class="reg-form-container">
         <div class="reg-form">
             <div class="reg-form-head text-center">
-                Register Here
+                <h2>Register Here</h2>
+                <p class="imp-field">
+                    <small>
+                        {% for message in messages %}
+                        {{message}}<br>
+                        {% endfor %}
+                    </small>
+                </p>
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
@@ -36,13 +41,52 @@
                         <input type="radio" name="gender" id="" value="Male" required />Male &nbsp;
                         <input type="radio" name="gender" id="" value="Female" required />Female &nbsp;
                     </div>
+                </div>
 
+
+
+                <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="number" name="pincode" onfocusout="input_field_focusout('pincode_label','pincode_input')" onfocus="input_field_focus('pincode_label')" id="pincode_input" required />
+                        <input type="number" name="pincode" onfocusout="input_field_focusout('pincode_label','pincode_input') " onfocus="input_field_focus('pincode_label')" id="pincode_input" required />
                         <label for="name" class="input-field-label" id="pincode_label">Your area Pincode:<span class="imp-field">*</span></label>
                     </div>
 
+                    <div class="input-field">
+                        <input type="text" name="block" onfocusout="input_field_focusout('block_label','block_input') " onfocus="input_field_focus('block_label')" id="block_input" required />
+                        <label for="name" class="input-field-label" id="block_label">Block:<span class="imp-field">*</span></label>
+                    </div>
+
                 </div>
+
+
+
+                <div class="input-field-grid-2">
+                    <div class="input-field">
+                        <input type="text" name="address_line_1" onfocusout="input_field_focusout('address_line_1_label','address_line_1_input')" onfocus="input_field_focus('address_line_1_label')" id="address_line_1_input" required />
+                        <label for="name" class="input-field-label" id="address_line_1_label">Address Line 1:<span class="imp-field">*</span></label>
+                    </div>
+    
+                    <div class="input-field">
+                        <input type="text" name="address_line_2" onfocusout="input_field_focusout('address_line_2_label','address_line_2_input')" onfocus="input_field_focus('address_line_2_label')" id="address_line_2_input" required />
+                        <label for="name" class="input-field-label" id="address_line_2_label">Address Line 2</label>
+                    </div>
+                </div>
+
+
+
+                <div class="input-field-grid-2">
+                    <div class="input-field">
+                        <input type="text" name="District" onfocusout="input_field_focusout('district_label','district_input')" onfocus="input_field_focus('district_label')" id="district_input" required />
+                        <label for="name" class="input-field-label" id="district_label">District:<span class="imp-field">*</span></label>
+                    </div>
+    
+                    <div class="input-field">
+                        <input type="text" name="state" onfocusout="input_field_focusout('state_label','state_input')" onfocus="input_field_focus('state_label')" id="state_input" required />
+                        <label for="name" class="input-field-label" id="state_label">State:<span class="imp-field">*</span></label>
+                    </div>
+                </div>
+
+
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
@@ -80,19 +124,6 @@
             </form>
         </div>
     </div>
-    
-{% block script %}
-            <script>
-                function input_field_focus(n){
-                    document.getElementById(n).classList.add("input-field-focused")
-                }
-                function input_field_focusout(n,m){
-                    var inp_value = document.getElementById(m).value;
-                    if(inp_value == ""){
-                        document.getElementById(n).classList.remove("input-field-focused")
-                    }
-                }
-            
-            </script>
-{% endblock %}
+<script src="{% static 'Javascript/input_style.js' %}"></script>
+<script src="{% static 'Javascript/register_page.js' %}"></script>
 {% endblock %}

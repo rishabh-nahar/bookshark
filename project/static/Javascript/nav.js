@@ -1,11 +1,3 @@
-prev_anchor = document.getElementById('search_achor_link').href
-function on_search_q(){
-    book_cat = document.querySelector('.book-category-select').value;
-    search_q = document.querySelector('.search_q_input').value;
-    document.getElementById('search_achor_link').href = prev_anchor + "?search_query=" + search_q;
-}
-
-
 function show_navbar(){
     document.getElementById('hidden_nav').classList.toggle('hide-nav-container');
     document.getElementById('hamburger_container').classList.toggle('hamburger-container');

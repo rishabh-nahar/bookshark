@@ -1,7 +1,6 @@
 .home-body-container{
     height: auto;
     width: auto;
-    padding: var(--body-start-position) 0 0 0 ;
 }
 
 .search-results{
@@ -82,7 +81,6 @@
     color: var(--white);
 }
 .no-books-to-display{
-    height:80vh;
     width: 96vw;
 }
 @media screen and (max-width: 1024px){

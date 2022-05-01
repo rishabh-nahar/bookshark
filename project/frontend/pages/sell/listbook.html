@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/listbook.css' %}?" %}>
 
     
-{% endblock %}
+{% endblock  style-links %}
 
 {% block content %}
 
@@ -18,77 +18,100 @@
                 {% csrf_token %}
                 
                 <div class="list-book-inside-form-div">
-                    <div class="input-field">
-                        <label for="">Book Name:</label>
-                        <input type="text" value="Book Name" name="book_name">
-                    </div>
-        
-                    <div class="input-field">
-                        <label for="category">Book Category</label>
-                        <select name="book_category" id="">
-                            <option value="Educational">Educational</option>
-                            <option value="Action and Adventure">Action and Adventure</option>
-                            <option value="Classics">Classics</option>
-                            <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
-                            <option value="Detective and Mystery">Detective and Mystery</option>
-                            <option value="Fantasy">Fantasy</option>
-                            <option value="Historical Fiction">Historical Fiction</option>
-                            <option value="Horror">Horror</option>
-                            <option value="Literary Fiction">Literary Fiction</option>
-                            <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
-                            <option value="Short Stories">Short Stories</option>
-                            <option value="Suspense and Thrillers">Suspense and Thrillers</option>
-                            <option value="Women's Fiction">Women's Fiction</option>
-                            <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
-                            <option value="Cookbooks">Cookbooks</option>
-                            <option value="Essays">Essays</option>
-                            <option value="History">History</option>
-                            <option value="Memoir">Memoir</option>
-                            <option value="Self-Help">Self-Help</option>
-                            <option value="True Crime">True Crime</option>
-                        </select>
-                    </div>
-            
-                    <div class="input-field">
-                        <label for="">Book Author:</label>
-                        <input type="text" value="Book Name" name="book_author">
-                    </div>
-                    <div class="input-field">
-                        <label for="">Book Publisher:</label>
-                        <input type="text" value="Book Name" name="book_publisher">
-                    </div>
-                    <div class="input-field">
-                        <label for="">Year Edition:</label>
-                        <input type="Number" value="2020" id="year_input" name="book_year_edition">
-                    </div>
-                    <div class="input-field">
-                        <label for="">Book MRP:</label>
-                        <input type="Number" value="2000" name="book_mrp">
-                    </div>
-                    <div class="input-field">
-                        <label for="">Your Selling Price:</label>
-                        <input type="Number" value="1000" name="book_selling_price">
-                    </div>
-                    <div class="input-field">
-                        <label for="">Book Description:</label>
-                        <textarea name="book_description" id="book_description">hello</textarea>
-                    </div>
+                    <div class="input-field-grid-2">
+                        <div class="input-field">
+                            <input type="text" autocomplete="off" name="book_name" onfocusout="input_field_focusout('book_name_label','book_name_input')" onfocus="input_field_focus('book_name_label')" id="book_name_input" required />
+                            <label for="name" class="input-field-label" id="book_name_label">Book Name:<span class="imp-field">*</span></label>
+                        </div>
+                
+                        <div class="input-field">
+                            <label for="category">Book Category</label>
+                            <select name="book_category" id="">
+                                <option value="Educational">Educational</option>
+                                <option value="Action and Adventure">Action and Adventure</option>
+                                <option value="Classics">Classics</option>
+                                <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
+                                <option value="Detective and Mystery">Detective and Mystery</option>
+                                <option value="Fantasy" select>Fantasy</option>
+                                <option value="Historical Fiction">Historical Fiction</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Literary Fiction">Literary Fiction</option>
+                                <option value="Science Fiction (Sci-Fi)">Science Fiction (Sci-Fi)</option>
+                                <option value="Short Stories">Short Stories</option>
+                                <option value="Suspense and Thrillers">Suspense and Thrillers</option>
+                                <option value="Women's Fiction">Women's Fiction</option>
+                                <option value="Biographies and Autobiographies">Biographies and Autobiographies</option>
+                                <option value="Cookbooks">Cookbooks</option>
+                                <option value="Essays">Essays</option>
+                                <option value="History">History</option>
+                                <option value="Memoir">Memoir</option>
+                                <option value="Self-Help">Self-Help</option>
+                                <option value="True Crime">True Crime</option>
+                            </select>
 
-                    <div class="input-field ">
-                        <!-- <div><input type="file" accept="image/*" name="image_file" id="file"  onchange="loadFile(event)" multiple></div>
-                        <div><img id="output" width="200" /> -->
-                        
-
-                            <input id="file-input" type="file" name="image_file"  multiple>
-                            <div id="preview"></div>
-                            
                         </div>
                     </div>
 
+                    <div class="input-field-grid-2">
 
-                    <br>
+                        <div class="input-field">
+                            <input type="text" autocomplete="off" name="book_author" onfocusout="input_field_focusout('book_author_label','book_author_input')" onfocus="input_field_focus('book_author_label')" id="book_author_input" required />
+                            <label for="name" class="input-field-label" id="book_author_label">Book Author:<span class="imp-field">*</span></label>
+                        </div>
 
-                    <button class="simple-bttn submit-bttn1" type="submit">
+                        <div class="input-field">
+                            <input type="text" autocomplete="off" name="book_publisher" onfocusout="input_field_focusout('book_publisher_label','book_publisher_input')" onfocus="input_field_focus('book_publisher_label')" id="book_publisher_input" required />
+                            <label for="name" class="input-field-label" id="book_publisher_label">Book Publisher:<span class="imp-field">*</span></label>
+                        </div>
+
+                    </div>
+
+
+                    <div class="input-field-grid-2">
+
+
+                        <div class="input-field">
+                            <input type="number" autocomplete="off" name="book_year_edition" onfocusout="input_field_focusout('book_year_edition_label','book_year_edition_input')" onfocus="input_field_focus('book_year_edition_label')" id="book_year_edition_input" required />
+                            <label for="name" class="input-field-label" id="book_year_edition_label">Year Edition:<span class="imp-field">*</span></label>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" autocomplete="off" name="book_mrp" onfocusout="input_field_focusout('book_mrp_label','book_mrp_input')" onfocus="input_field_focus('book_mrp_label')" id="book_mrp_input" required />
+                            <label for="name" class="input-field-label" id="book_mrp_label">Book MRP:<span class="imp-field">*</span></label>
+                        </div>
+                    
+                    </div>
+
+                    <div class="input-field-grid-2">
+
+                        <div class="input-field">
+                            <input type="text" autocomplete="off" name="book_selling_price" onfocusout="input_field_focusout('book_selling_price_label','book_selling_price_input')" onfocus="input_field_focus('book_selling_price_label')" id="book_selling_price_input" required />
+                            <label for="name" class="input-field-label" id="book_selling_price_label">Your Selling Price:<span class="imp-field">*</span></label>
+                        </div>
+
+                        <div class="input-field ">
+                            <input id="file-input" type="file" name="image_file"  multiple>
+                            <div id="preview">
+
+                            </div>
+                        </div>        
+                    
+                    </div>
+
+                    <div class="input-field-grid-2">
+
+                        <div class="input-field">
+                            <label for="">Book Description:</label>
+                            <textarea name="book_description" id="book_description">Paperback. Condition: VERY GOOD. 
+                                Light rubbing wear to cover, spine and page edges. 
+                                Very minimal writing or notations in margins not affecting the text. 
+                                Possible clean ex-library copy, with their stickers and or stamp(s).</textarea>
+                        </div>
+                    
+                    </div>
+
+
+                    <button class="simple-bttn simple-bttn-2" type="submit">
                         List Book
                     </button>
 
@@ -97,7 +120,8 @@
             </form>
 
 {% block script %}
-            <script>
+        <script src="{% static 'Javascript/input_style.js' %}"></script>
+        <script>
                 // var loadFile = function(event) {
                 //     for (let i = 1; i < event.target.files.length; i++) {
                 //         var image = document.getElementById('output').appendChild(document.createElement('div'));
@@ -144,7 +168,7 @@
                 const d = new Date();
                 let year = d.getFullYear();
                 document.getElementById('year_input').max = year
-                document.getElementById('year_input').min = year - 10;
+                document.getElementById('year_input').min = year - 13;
             </script>
 
         </div>
