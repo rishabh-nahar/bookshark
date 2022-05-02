@@ -271,7 +271,9 @@ def loginpage(request):
 
     return render(request,'pages/login/login.html')
 
-
+def clear_mssge():
+    for msg in messages:
+        del msg
 
 def registeration_page(request):
     if request.method == "POST":

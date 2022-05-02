@@ -38,8 +38,10 @@
                     Author-<a class="color_grey">{{ books.book_author }}</a><br>
                     publisher-<a class="color_grey">{{ books.book_publisher }}</a>
                 </div>
+            </div><br>
+            <div>
+                <h3><i class="fa fa-map-marker"></i> {{books.book_seller.address_line_1}}</h3>
             </div>
-    
             <div class="pricetag">
                 <h3 class="price">&#8377;{{books.book_mrp}}</h3>
                 <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
