@@ -12,8 +12,9 @@ body{
 .reg-form{
     padding: 20px;
     border-radius: 2px;
-    background-color: var(--white)
+    background-color: var(--white);
 }
+
 @media screen and (max-width: 786px) {   
     .reg-form-container{
         width: 100%;

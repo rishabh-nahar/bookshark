@@ -1,4 +1,11 @@
 {% extends "pages/profile/posted_books.html" %}
+{%  load static %}
+{% block style-links %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/ProfilePage.css' %}?" %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/my_orders.css' %}?" %}>
+
+{% endblock style-links %}
 
 
 {% block profile-content  %}
@@ -30,18 +37,23 @@
 
         <div class="bookDesc">
             <div class="book-title">
-                <h2>{{books.book_name}}</h2>
+                <h2 class="show-hidden-info">{{books.book_name}} 
+                    <i class="fa fa-info-circle hidden-info-cicle" onmouseover="show_hidden_info()" onmouseout="hide_hidden_info()"></i>
+                    <span class="hidden-info hidden">Contact the owner of book,  pick the book from location and confirm yout pickup</span>
+                </h2> 
             </div>
             <div class="book-desc color_grey">{{books.book_description}}</div>
             <div class="book-author">
                 <div class="authorname">
                     Author-<a class="color_grey">{{ books.book_author }}</a><br>
-                    publisher-<a class="color_grey">{{ books.book_publisher }}</a>
+                    Publisher-<a class="color_grey">{{ books.book_publisher }}</a><br>
+                    Location-<a class="color_grey">{{ books.book_seller.address_line_1 }}</a><br>
+                    Contact-<a class="color_grey">{{ books.book_seller.phone }}</a>
                 </div>
-            </div><br>
-            <div>
-                <h3><i class="fa fa-map-marker"></i> {{books.book_seller.address_line_1}}</h3>
             </div>
+            <!-- <div>
+                <h3><i class="fa fa-map-marker"></i> {{books.book_seller.address_line_1}}</h3>
+            </div> -->
             <div class="pricetag">
                 <h3 class="price">&#8377;{{books.book_mrp}}</h3>
                 <h3 class="offerprice">&#8377;{{ books.book_selling_price }}</h3>
@@ -59,6 +71,19 @@
 
     {% endfor %}
 
+    <script>
 
+        function show_hidden_info(){
+            hidden_info_icon = document.querySelector(".show-hidden-info")
+            hidden_info = document.querySelector(".hidden-info")
+            hidden_info.classList.remove("hidden")
+        } 
+
+        function hide_hidden_info(){
+            hidden_info_icon = document.querySelector(".show-hidden-info")
+            hidden_info = document.querySelector(".hidden-info")
+            hidden_info.classList.add("hidden")
+        }
+    </script>
 
 {% endblock profile-content %}

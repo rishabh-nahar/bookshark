@@ -1,0 +1,22 @@
+.hidden-info-cicle{
+    color: rgb(80, 80, 239)
+}
+.book-title{
+    position: relative;
+}
+.show-hidden-info {
+    display: flex;
+    gap: 0.3vw;
+    align-items: center
+}
+.hidden-info{
+    position: absolute;
+    background-color:var(--theme-light-2);
+    right: 0;
+    font-weight: 100;
+    font-size: 70%;
+    border-radius:5px;
+    padding: 3px;
+}
+
+
