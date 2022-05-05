@@ -208,12 +208,12 @@ def edit_profile(request):
         print(username)
         user_details_to_display.first_name=first_name
         user_details_to_display.last_name=last_name
-        #user_details_to_display.gender = gender,
+        user_details_to_display.gender = gender
         user_details_to_display.mail = mail
-        #user_details_to_display.phone = int(phone),
+        user_details_to_display.phone = phone
         user_details_to_display.username = username
         user_details_to_display.password = password
-        #user_details_to_display.address_pincode = pincode,
+        user_details_to_display.address_pincode = pincode
         user_details_to_display.address_line_1 = address_line_1
         user_details_to_display.address_line_2 = address_line_2
         user_details_to_display.block = block
@@ -222,8 +222,8 @@ def edit_profile(request):
         user_details_to_display.save()
 
         print("User Updated")
-        
-        return redirect('edit_profile')
+        messages.success(request,"Profile Updated")
+        # return redirect('profile')
 
 
     context = {

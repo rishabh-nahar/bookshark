@@ -25,20 +25,20 @@
                 {% csrf_token %}
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="text" name="firstname" onfocusout="input_field_focusout('firstname_label','firstname_input')" onfocus="input_field_focus('firstname_label')" id="firstname_input" required />
-                        <label for="name" class="input-field-label" id="firstname_label">Your name:<span class="imp-field">*</span></label>
+                        <input type="text" value="jsdka" name="firstname" class="theme_input" onfocusout="input_field_focusout('firstname_label','firstname_input')" onfocus="input_field_focus('firstname_label')" id="firstname_input" data-for-js2="firstname_label" data-forjs1="firstname_input" required />
+                        <label for="name" class="input-field-label" id="firstname_label" >Your name:<span class="imp-field">*</span></label>
                     </div>
     
                     <div class="input-field">
-                        <input type="text" name="lastname" onfocusout="input_field_focusout('lastname_label','lastname_input')" onfocus="input_field_focus('lastname_label')" id="lastname_input" required />
+                        <input type="text" value="last" name="lastname" class="theme_input" onfocusout="input_field_focusout('lastname_label','lastname_input')" onfocus="input_field_focus('lastname_label')" id="lastname_input" data-for-js2="lastname_label" data-forjs1="lastname_input" required />
                         <label for="name" class="input-field-label" id="lastname_label">Your Lastname:<span class="imp-field">*</span></label>
                     </div>
                 </div>
 
                 <div class="input-field-grid-2">
                     <div>
-                        <label for="gender" class="input-field-label" id="Gender_label">Your Gender:<span class="imp-field">*</span></label> &nbsp;
-                        <input type="radio" name="gender" id="" value="Male" required />Male &nbsp;
+                        <label for="gender" class="input-field-label" id="Gender_label" data-for-js2="Gender_label" data-forjs1="Gender_label">Your Gender:<span class="imp-field">*</span></label> &nbsp;
+                        <input type="radio" name="gender" id="" value="Male &nbsp;"alue="Male" required />Male &nbsp;
                         <input type="radio" name="gender" id="" value="Female" required />Female &nbsp;
                     </div>
                 </div>
@@ -47,12 +47,12 @@
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="number" name="pincode" onfocusout="input_field_focusout('pincode_label','pincode_input') " onfocus="input_field_focus('pincode_label')" id="pincode_input" required />
-                        <label for="name" class="input-field-label" id="pincode_label">Your area Pincode:<span class="imp-field">*</span></label>
+                        <input type="number" name="pincode" class="theme_input" onfocusout="input_field_focusout('pincode_label','pincode_input') " onfocus="input_field_focus('pincode_label')" id="pincode_input" data-for-js2="pincode_label" data-forjs1="pincode_input" required />
+                        <label for="name" class="input-field-label" id="pincode_label" >Your area Pincode:<span class="imp-field">*</span></label>
                     </div>
 
                     <div class="input-field">
-                        <input type="text" name="block" onfocusout="input_field_focusout('block_label','block_input') " onfocus="input_field_focus('block_label')" id="block_input" required />
+                        <input type="text" name="block" class="theme_input" onfocusout="input_field_focusout('block_label','block_input') " onfocus="input_field_focus('block_label')" id="block_input" data-for-js2="block_label" data-forjs1="block_input" required />
                         <label for="name" class="input-field-label" id="block_label">Block:<span class="imp-field">*</span></label>
                     </div>
 
@@ -62,13 +62,13 @@
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="text" name="address_line_1" onfocusout="input_field_focusout('address_line_1_label','address_line_1_input')" onfocus="input_field_focus('address_line_1_label')" id="address_line_1_input" required />
-                        <label for="name" class="input-field-label" id="address_line_1_label">Address Line 1(Pickup Location when you list your book):<span class="imp-field">*</span></label>
+                        <input type="text" name="address_line_1" class="theme_input" onfocusout="input_field_focusout('address_line_1_label','address_line_1_input')" onfocus="input_field_focus('address_line_1_label')" id="address_line_1_input" data-for-js2="address_line_1_label" data-forjs1="address_line_1_input" required />
+                        <label for="name" class="input-field-label" id="address_line_1_label" data-for-js2="address_line_1_label" data-forjs1="address_line_1_label">Address Line 1(Pickup Location when you list your book):<span class="imp-field">*</span></label>
                     </div>
     
                     <div class="input-field">
-                        <input type="text" name="address_line_2" onfocusout="input_field_focusout('address_line_2_label','address_line_2_input')" onfocus="input_field_focus('address_line_2_label')" id="address_line_2_input" />
-                        <label for="name" class="input-field-label" id="address_line_2_label">Address Line 2</label>
+                        <input type="text" name="address_line_2" class="theme_input" onfocusout="input_field_focusout('address_line_2_label','address_line_2_input')" onfocus="input_field_focus('address_line_2_label')" id="address_line_2_input" data-for-js2="address_line_2_label" data-forjs1="address_line_2_input" />
+                        <label for="name" class="input-field-label" id="address_line_2_label" data-for-js2="address_line_2_label" data-forjs1="address_line_2_label">Address Line 2</label>
                     </div>
                 </div>
 
@@ -76,13 +76,13 @@
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="text" name="District" onfocusout="input_field_focusout('district_label','district_input')" onfocus="input_field_focus('district_label')" id="district_input" required />
-                        <label for="name" class="input-field-label" id="district_label">District:<span class="imp-field">*</span></label>
+                        <input type="text" name="District" class="theme_input" onfocusout="input_field_focusout('district_label','district_input')" onfocus="input_field_focus('district_label')" id="district_input" data-for-js2="district_label" data-forjs1="district_input" required />
+                        <label for="name" class="input-field-label" id="district_label" data-for-js2="district_label" data-forjs1="district_label">District:<span class="imp-field">*</span></label>
                     </div>
     
                     <div class="input-field">
-                        <input type="text" name="state" onfocusout="input_field_focusout('state_label','state_input')" onfocus="input_field_focus('state_label')" id="state_input" required />
-                        <label for="name" class="input-field-label" id="state_label">State:<span class="imp-field">*</span></label>
+                        <input type="text" name="state" class="theme_input" onfocusout="input_field_focusout('state_label','state_input')" onfocus="input_field_focus('state_label')" id="state_input" data-for-js2="state_label" data-forjs1="state_input" required />
+                        <label for="name" class="input-field-label" id="state_label" data-for-js2="state_label" data-forjs1="state_label">State:<span class="imp-field">*</span></label>
                     </div>
                 </div>
 
@@ -90,25 +90,25 @@
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="email" name="mail" onfocusout="input_field_focusout('email_label','email_input')" onfocus="input_field_focus('email_label')" id="email_input" required />
-                        <label for="name" name="" class="input-field-label" id="email_label">Your Email:<span class="imp-field">*</span></label>
+                        <input type="email" name="mail" class="theme_input" onfocusout="input_field_focusout('email_label','email_input')" onfocus="input_field_focus('email_label')" id="email_input" data-for-js2="email_label" data-forjs1="email_input" required />
+                        <label for="name" name="" class="input-field-label" id="email_label" data-for-js2="email_label" data-forjs1="email_label">Your Email:<span class="imp-field">*</span></label>
                     </div>
     
                     <div class="input-field">
-                        <input type="text" name="phone" onfocusout="input_field_focusout('mobile_label','mobile_input')" onfocus="input_field_focus('mobile_label')" id="mobile_input" required />
-                        <label for="name" class="input-field-label" id="mobile_label">Your Mobile:<span class="imp-field">*</span></label>
+                        <input type="text" name="phone" class="theme_input" onfocusout="input_field_focusout('mobile_label','mobile_input')" onfocus="input_field_focus('mobile_label')" id="mobile_input" data-for-js2="mobile_label" data-forjs1="mobile_input" required />
+                        <label for="name" class="input-field-label" id="mobile_label" data-for-js2="mobile_label" data-forjs1="mobile_label">Your Mobile:<span class="imp-field">*</span></label>
                     </div>
                 </div>
 
                 <div class="input-field-grid-2">
                     <div class="input-field">
-                        <input type="text" name="username" onfocusout="input_field_focusout('username_label','username_input')" onfocus="input_field_focus('username_label')" id="username_input" required />
-                        <label for="name" class="input-field-label" id="username_label">Create Username:<span class="imp-field">*</span></label>
+                        <input type="text" name="username" class="theme_input" onfocusout="input_field_focusout('username_label','username_input')" onfocus="input_field_focus('username_label')" id="username_input" data-for-js2="username_label" data-forjs1="username_input" required />
+                        <label for="name" class="input-field-label" id="username_label" data-for-js2="username_label" data-forjs1="username_label">Create Username:<span class="imp-field">*</span></label>
                     </div>
     
                     <div class="input-field">
-                        <input type="password" name="password" onfocusout="input_field_focusout('password_label','password_input')" onfocus="input_field_focus('password_label')" id="password_input" required />
-                        <label for="name" class="input-field-label" id="password_label">Create Password:<span class="imp-field">*</span></label>
+                        <input type="password" name="password" class="theme_input" onfocusout="input_field_focusout('password_label','password_input')" onfocus="input_field_focus('password_label')" id="password_input" data-for-js2="password_label" data-forjs1="password_input" required />
+                        <label for="name" class="input-field-label" id="password_label" data-for-js2="password_label" data-forjs1="password_label">Create Password:<span class="imp-field">*</span></label>
                     </div>
                 </div>
 

@@ -13,14 +13,7 @@
 <div class="edit-profile-form-container">
     <div class="edit-profile-form">
         <div class="reg-form-head text-center">
-            <h2>Edit profile</h2>
-            <p class="imp-field">
-                <small>
-                    {% for message in messages %}
-                    {{message}}<br>
-                    {% endfor %}
-                </small>
-            </p><br>
+            <h2>Edit profile</h2><br>
         </div>
         <form action="" method="POST">
             {% csrf_token %}
@@ -134,5 +127,9 @@
     </div>
 </div>
 <script src="{% static 'Javascript/input_style.js' %}"></script>
-
+{% for mssge in messages %}
+        <script type="text/javascript">
+            alert("{{mssge}}")
+        </script>
+{% endfor %}
 {% endblock profile-content %}
