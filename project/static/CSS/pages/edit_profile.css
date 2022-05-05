@@ -1,0 +1,7 @@
+.edit-profile-form-container{
+    display: grid;
+    justify-content: center;
+    padding: 5vh 0vh;
+    background-color: var(--theme-light-1);
+    width: 62vw;
+}

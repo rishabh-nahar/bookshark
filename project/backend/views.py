@@ -185,6 +185,57 @@ def profile(request):
         }
     return render(request,'pages/profile/posted_books.html',context)
 
+def edit_profile(request):
+    user_id = request.session.get("user_unique_id")
+    user_details_to_display = user_details.objects.get(pk = user_id)
+
+
+    if request.method == "POST":
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
+        pincode = request.POST['pincode'] 
+        block = request.POST['block'] 
+        address_line_1 = request.POST['address_line_1'] 
+        address_line_2 = request.POST['address_line_2']  
+        district = request.POST['District'] 
+        state = request.POST['state'] 
+        gender = request.POST['gender'] 
+        mail = request.POST['mail'] 
+        phone = request.POST['phone'] 
+        username = request.POST['username'] 
+        password = request.POST['password'] 
+
+        print(username)
+        user_details_to_display.first_name=first_name
+        user_details_to_display.last_name=last_name
+        #user_details_to_display.gender = gender,
+        user_details_to_display.mail = mail
+        #user_details_to_display.phone = int(phone),
+        user_details_to_display.username = username
+        user_details_to_display.password = password
+        #user_details_to_display.address_pincode = pincode,
+        user_details_to_display.address_line_1 = address_line_1
+        user_details_to_display.address_line_2 = address_line_2
+        user_details_to_display.block = block
+        user_details_to_display.district = district
+        user_details_to_display.state = state
+        user_details_to_display.save()
+
+        print("User Updated")
+        
+        return redirect('edit_profile')
+
+
+    context = {
+        'user_detail':user_details_to_display,
+        'user_id': user_id
+        }
+    return render(request,'pages/profile/edit_profile.html',context)
+
+
+
+
+
 def sell(request):
     user_id = request.session.get("user_unique_id")
     if request.method == 'POST':

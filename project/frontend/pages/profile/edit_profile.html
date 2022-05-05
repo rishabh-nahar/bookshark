@@ -1,0 +1,138 @@
+{% extends "pages/profile/posted_books.html" %}
+{%  load static %}
+{% block style-links %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/ProfilePage.css' %}" %}>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/pages/edit_profile.css' %}" %}>
+
+{% endblock style-links %}
+
+
+{% block profile-content  %}
+    
+<div class="edit-profile-form-container">
+    <div class="edit-profile-form">
+        <div class="reg-form-head text-center">
+            <h2>Edit profile</h2>
+            <p class="imp-field">
+                <small>
+                    {% for message in messages %}
+                    {{message}}<br>
+                    {% endfor %}
+                </small>
+            </p><br>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="text" name="firstname" onfocusout="input_field_focusout('firstname_label','firstname_input')" onfocus="input_field_focus('firstname_label')" id="firstname_input" value="{{user_detail.first_name}}" required />
+                    <label for="name" class="input-field-label" id="firstname_label">Name:</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="lastname" onfocusout="input_field_focusout('lastname_label','lastname_input')" onfocus="input_field_focus('lastname_label')" id="lastname_input" value="{{user_detail.last_name}}" required />
+                    <label for="name" class="input-field-label" id="lastname_label">Lastname:</label>
+                </div>
+            </div>
+
+            <div class="input-field-grid-2">
+                {% if user_detail.gender == "Male" %}
+                <div>
+                    <label for="gender" class="input-field-label" id="Gender_label">Gender:</label> &nbsp;
+                    <input type="radio" name="gender" id="" value="Male" checked required />Male &nbsp;
+                    <input type="radio" name="gender" id="" value="Female" required />Female &nbsp;
+                </div>
+                {% else %}
+                <div>
+                    <label for="gender" class="input-field-label" id="Gender_label">Gender:</label> &nbsp;
+                    <input type="radio" name="gender" id="" value="Male" checked required />Male &nbsp;
+                    <input type="radio" name="gender" id="" checked value="Female" required />Female &nbsp;
+                </div>
+                {% endif %}
+            </div>
+
+
+
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="number" name="pincode" onfocusout="input_field_focusout('pincode_label','pincode_input') " onfocus="input_field_focus('pincode_label')" id="pincode_input" value="{{user_detail.address_pincode}}" required />
+                    <label for="name" class="input-field-label" id="pincode_label">Area Pincode:</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="block" onfocusout="input_field_focusout('block_label','block_input') " onfocus="input_field_focus('block_label')" id="block_input" value="{{user_detail.block}}" required />
+                    <label for="name" class="input-field-label" id="block_label">Block:</label>
+                </div>
+
+            </div>
+
+
+
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="text" name="address_line_1" onfocusout="input_field_focusout('address_line_1_label','address_line_1_input')" onfocus="input_field_focus('address_line_1_label')" id="address_line_1_input" value="{{user_detail.address_line_1}}" required />
+                    <label for="name" class="input-field-label" id="address_line_1_label">Address Line 1(Pickup Location when you list book):</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="address_line_2" onfocusout="input_field_focusout('address_line_2_label','address_line_2_input')" onfocus="input_field_focus('address_line_2_label')" id="address_line_2_input" value="{{user_detail.address_line_2}}" />
+                    <label for="name" class="input-field-label" id="address_line_2_label">Address Line 2</label>
+                </div>
+            </div>
+
+
+
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="text" name="District" onfocusout="input_field_focusout('district_label','district_input')" onfocus="input_field_focus('district_label')" id="district_input" value="{{ user_detail.district }}" required />
+                    <label for="name" class="input-field-label" id="district_label">District:</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" name="state" onfocusout="input_field_focusout('state_label','state_input')" onfocus="input_field_focus('state_label')" id="state_input" value="{{user_detail.state}}" required />
+                    <label for="name" class="input-field-label" id="state_label">State:</label>
+                </div>
+            </div>
+
+
+
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="email" name="mail" onfocusout="input_field_focusout('email_label','email_input')" onfocus="input_field_focus('email_label')" id="email_input" value="{{user_detail.mail}}" required />
+                    <label for="name" name="" class="input-field-label" id="email_label">Email:</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="number" name="phone" onfocusout="input_field_focusout('mobile_label','mobile_input')" onfocus="input_field_focus('mobile_label')" id="mobile_input" value="{{user_detail.phone}}" required />
+                    <label for="name" class="input-field-label" id="mobile_label">Mobile:</label>
+                </div>
+            </div>
+
+            <div class="input-field-grid-2">
+                <div class="input-field">
+                    <input type="text" name="username" onfocusout="input_field_focusout('username_label','username_input')" onfocus="input_field_focus('username_label')" id="username_input" value="{{user_detail.username}}" required />
+                    <label for="name" class="input-field-label" id="username_label">Create Username:</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" name="password" onfocusout="input_field_focusout('password_label','password_input')" onfocus="input_field_focus('password_label')" id="password_input" value="{{user_detail.password}}" required />
+                    <label for="name" class="input-field-label" id="password_label">Create Password:</label>
+                </div>
+            </div>
+
+            <div class="input-field-grid-2">
+                <div>
+                    <input class="simple-bttn simple-bttn-2" onclick="input_field_focusout()" type="reset" value="Reset">
+                </div>
+                <div>
+                    <input class="simple-bttn simple-bttn-2" type="submit" value="Save" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<script src="{% static 'Javascript/input_style.js' %}"></script>
+
+{% endblock profile-content %}

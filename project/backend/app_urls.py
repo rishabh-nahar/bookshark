@@ -5,8 +5,10 @@ urlpatterns = [
     path('', views.home,name="home"),
     
     path('product/<int:productid>', views.product,name="product"),
+
     path('my_orders', views.my_orders,name="my_orders"),
     path('profile', views.profile,name="profile"),
+    path('edit_profile', views.edit_profile,name="edit_profile"),
 
     path('loginpage', views.loginpage,name="loginpage"),
     path('registeration_page', views.registeration_page,name="registeration_page"),
