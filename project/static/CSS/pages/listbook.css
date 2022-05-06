@@ -12,3 +12,20 @@ body{
     padding: 5vh 5vw;
     border-radius:5px;
 } 
+.description_div{
+    display: flex;
+    gap:2vw;
+}
+.book_description_input{
+    resize: none;
+    min-width: 50vw;
+    max-width: 60vw;
+    height: 20vh;
+}  
+.img_preview{
+    display: flex;
+    justify-content: start;
+    gap:1vw;
+    width: 100%;
+    border: 1px solid #dbdbdb;
+}
