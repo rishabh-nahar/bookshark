@@ -65,3 +65,13 @@ http://localhost:8000
 5. Click on a book to view its details and contact the seller.
 
 6. Go to profile to get details of book that you have uploaded
+
+
+## Technologies Used
+- Django Framework
+- HTML, CSS, and JavaScript for the frontend
+- MySQL Database for storing user and book information
+- SMTP for email notifications
+
+## Contact
+If you have any questions, suggestions, or issues, please contact rishabhpnahar@gmail.com. Feel free to contribute to the project by submitting pull requests or reporting bugs on the GitHub repository.
