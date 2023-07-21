@@ -34,3 +34,18 @@ Set up the database by running the migrations:
 ```bash
 python manage.py migrate
 ```
+
+Create a superuser account to access the Django admin panel:
+```bash
+python manage.py createsuperuser
+```
+
+Start the development server:
+```bash
+python manage.py runserver
+```
+
+Access the application by visiting http://localhost:8000 in your web browser.
+```bash
+http://localhost:8000 
+```
