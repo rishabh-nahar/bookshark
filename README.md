@@ -28,8 +28,9 @@ To set up BookShark on your local machine, follow these steps:
 
 ```bash
 pip install -r requirements.txt
-
+```bash
 
 Set up the database by running the migrations:
 ```bash
 python manage.py migrate
+```bash
