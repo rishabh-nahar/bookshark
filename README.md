@@ -27,7 +27,8 @@ To set up BookShark on your local machine, follow these steps:
 3. Install the required packages using the following command:
 
 ```bash
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 Set up the database by running the migrations:
 ```bash
